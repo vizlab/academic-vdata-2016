@@ -2,9 +2,7 @@ import ReactGA from 'react-ga'
 
 import {googleAnalyticsId} from './constants'
 
-ReactGA.initialize(googleAnalyticsId, {
-  debug: true
-})
+ReactGA.initialize(googleAnalyticsId)
 
 export const logPageView = () => {
   ReactGA.set({page: window.location.pathname})
