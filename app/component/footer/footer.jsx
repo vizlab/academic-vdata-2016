@@ -39,7 +39,7 @@ export class Footer extends React.Component {
 
   render () {
     return (
-      <footer style={{'position': 'fixed', 'bottom': '0', 'width': '100%', 'textAlign': 'left', 'padding': '4rem 0', 'marginTop': '4rem', 'fontSize': '85%', 'backgroundColor': '#f7f7f7'}}>
+      <footer style={{'width': '100%', 'textAlign': 'left', 'padding': '4rem 0', 'marginTop': '4rem', 'fontSize': '85%', 'backgroundColor': '#f7f7f7'}}>
         <div className='container'>
           <div className='row'>
             <div className='col-md-6'>

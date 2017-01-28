@@ -6,6 +6,7 @@ import {
 import Paper from 'material-ui/Paper'
 
 import {title} from './contents'
+import {FirebaseImg} from '../../utils/firebase-img'
 
 export class Article1 extends React.Component {
   render () {
@@ -31,7 +32,7 @@ export class Article1 extends React.Component {
                 </CardText>
               </div>
               <div className='col-md-6 text-center' style={{'paddingTop': '24px', 'paddingBottom': '24px'}}>
-                <img src='/assets/svg/gender-ratio.svg' style={{'width': '80%'}} />
+                <FirebaseImg src='svg/gender-ratio.svg' imgStyle={{'width': '80%'}} />
               </div>
             </div>
           </Paper>
@@ -43,7 +44,7 @@ export class Article1 extends React.Component {
                 <CardText>若い研究者から得られた回答は少なかったように思われる．</CardText>
               </div>
               <div className='col-md-6 text-center' style={{'paddingTop': '24px', 'paddingBottom': '24px'}}>
-                <img src='/assets/svg/age-ratio.svg' style={{'width': '80%'}} />
+                <FirebaseImg src='svg/age-ratio.svg' imgStyle={{'width': '80%'}} />
               </div>
             </div>
           </Paper>
@@ -55,7 +56,7 @@ export class Article1 extends React.Component {
                 <CardText>私立大学に属している研究者からの回答は少なかったように思われる．</CardText>
               </div>
               <div className='col-md-6 text-center' style={{'paddingTop': '24px', 'paddingBottom': '24px'}}>
-                <img src='/assets/svg/org-ratio.svg' style={{'width': '80%'}} />
+                <FirebaseImg src='svg/org-ratio.svg' imgStyle={{'width': '80%'}} />
               </div>
             </div>
           </Paper>
@@ -70,7 +71,7 @@ export class Article1 extends React.Component {
                 </CardText>
               </div>
               <div className='col-md-9 text-center' style={{'paddingTop': '24px', 'paddingBottom': '24px'}}>
-                <img src='/assets/svg/bunya.svg' style={{'width': '90%'}} />
+                <FirebaseImg src='svg/bunya.svg' imgStyle={{'width': '90%'}} />
               </div>
             </div>
           </Paper>
@@ -83,7 +84,7 @@ export class Article1 extends React.Component {
                 詳しいキーワードから，大雑把なキーワードまで様々なものが挙げられている．
               </CardText>
               <div className='text-center' style={{'paddingTop': '24px'}}>
-                <img src='/assets/svg/keywordcloud.svg' style={{'width': '90%'}} />
+                <FirebaseImg src='svg/keywordcloud.svg' imgStyle={{'width': '90%'}} />
               </div>
             </div>
           </Paper>
