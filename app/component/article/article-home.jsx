@@ -27,20 +27,22 @@ export class ArticleHome extends React.Component {
           </div>
         </div>
         <div className='container'>
-          <div className='col-md-6'>
-            <Article1Card />
-          </div>
-          <div className='col-md-6'>
-            <Article2Card />
-          </div>
-          <div className='col-md-6'>
-            <Article3Card />
-          </div>
-          <div className='col-md-6'>
-            <Article4Card />
-          </div>
-          <div className='col-md-6'>
-            <Article5Card />
+          <div className='row'>
+            <div className='col-md-6'>
+              <Article1Card />
+            </div>
+            <div className='col-md-6'>
+              <Article2Card />
+            </div>
+            <div className='col-md-6'>
+              <Article3Card />
+            </div>
+            <div className='col-md-6'>
+              <Article4Card />
+            </div>
+            <div className='col-md-6'>
+              <Article5Card />
+            </div>
           </div>
         </div>
       </div>
