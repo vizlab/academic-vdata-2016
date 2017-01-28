@@ -1,0 +1,7 @@
+service firebase.storage {
+  match /b/academic-vdata-2016.appspot.com/o {
+    match /{allPaths=**} {
+      allow read: if request.auth != null;
+    }
+  }
+}

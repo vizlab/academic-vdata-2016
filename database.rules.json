@@ -1,0 +1,26 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".validate": "newData.hasChildren(['name', 'department', 'email', 'permitSendMessage'])",
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "email": {
+          ".read": "$uid === auth.uid",
+          ".validate": "newData.isString()"
+        },
+        "department": {
+          ".validate": "newData.isString()"
+        },
+        "permitSendMessage": {
+          ".read": "$uid === auth.uid",
+          ".validate": "newData.isBoolean()"
+        }
+      }
+    }
+  }
+}

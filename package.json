@@ -1,0 +1,46 @@
+{
+  "name": "academic-vdata-2016",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "firebase": "^3.6.5",
+    "material-ui": "^0.16.6",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-ga": "^2.1.2",
+    "react-router": "^3.0.1",
+    "react-tap-event-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "eslint": "^3.13.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard-jsx": "^3.2.0",
+    "eslint-config-standard-react": "^4.2.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "file-loader": "^0.9.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "scripts": {
+    "test": "eslint --ext .jsx,.js app",
+    "start": "webpack-dev-server",
+    "build": "webpack && cp -r assets public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vizlab/academic-vdata-2016.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vizlab/academic-vdata-2016/issues"
+  },
+  "homepage": "https://github.com/vizlab/academic-vdata-2016#readme"
+}
