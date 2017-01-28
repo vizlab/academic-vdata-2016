@@ -1,19 +1,15 @@
 language: node_js
 node_js:
-  - "6"
-
+- '6'
 install:
-  - npm install -g firebase-tools
-  - npm i
-
+- npm install -g firebase-tools
+- npm i
 before_script:
-  - npm run test
-
+- npm run test
 script:
-  - npm run build
-
+- npm run build
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
-
+- firebase deploy --token $FIREBASE_TOKEN
 notifications:
-  slack: vizlab:$SLACK_TOKEN
+  slack:
+    secure: Q1y2F9+Tj4/K1cZUB4bIGETEbqYWYZSHORs+7LiHxJWrABjKn+7VbVWdR4LrxABsPeM/UO8N4KBbOnmpshLrlREBej7XqRpORlpkzRT3AY2qKXFsZLjnc9604TxY9Tsh055dDGpgWGHF821EfX2LFyBkbInewx0OvP1PLejzAbhCg2dzVSXyr1I/zx+TiXfxXLvZaf4aZGfymHOTbePd/wVKY9XIcRxqgtKz6/xsQzNU/P20hBjxHTs9I6RZNbOutC+zCg3R4jGbc4BBtSOfqliJGrHnTeZuZmmSrDumHbMerWKkVXW5bM87XnOIoLfh00TbknsvMEsEDyKQ8aNUnj7LoCyLAyMr/gTddNViKHU1URLcrGMq6juZhQBE7S/jfpTVEaFz8DWG6RL07D0GP7EFAt0ucAvswQv0BnzD1OXcOj8MynLNooiuentgHo/JgE3VezMUtUTd1fwOHPs/Qy/FPSKAAlUFFvf9xFyQU4ndzITRWHt18vey3vQ/J8cNMx7Ws9CCoXL8jMDOQZYpOcx/+BwY+Tx6o4zGr4dzXA02o+0weFyABuHoRJMynbqvlQV3hcpNdnnP7B+1YRlHDB3+Tb8YvjuGBL8/wf+xU+Tc4KDg17w5rvl/Bp8QjA9an2YosKJecXNfloprMEl+xREvV/o/PWD1hv0CaUsdYPE=
