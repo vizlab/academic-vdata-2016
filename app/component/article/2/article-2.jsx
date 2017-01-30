@@ -1,11 +1,12 @@
 import React from 'react'
 
+import {ArticleHeader} from '../article-header'
+
 export class Article2 extends React.Component {
   render () {
     return (
       <div>
-        article 2
-        <a target='_blank' href='https://academic-vdata-2016.firebaseapp.com/contents/2/'>todo</a>
+        <ArticleHeader />
       </div>
     )
   }

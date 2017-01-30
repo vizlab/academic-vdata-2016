@@ -7,22 +7,16 @@ import Paper from 'material-ui/Paper'
 
 import {title} from './contents'
 import {FirebaseImg} from '../../utils/firebase-img'
+import {ArticleHeader} from '../article-header'
 
 export class Article1 extends React.Component {
   render () {
     return (
       <div>
-        <div className='jumbotron'>
-          <div className='container'>
-            <h1>
-              学術分野の文化比較大調査<br />
-              中間発表
-            </h1>
-            <h2>{title}</h2>
-            <p>学術コミュニティ，文化を可視化することで我々は何を発見し，どう行動できるのか．</p>
-          </div>
-        </div>
+        <ArticleHeader />
         <div className='container'>
+          <h2>{title}</h2>
+          <p>我が国に在籍する研究者1670名の分析（2016/8/1時）</p>
           <Paper style={{'marginTop': '24px', 'marginBottom': '24px', 'padding': '12px'}}>
             <div className='container row'>
               <div className='col-md-6'>
@@ -83,7 +77,7 @@ export class Article1 extends React.Component {
                 研究者が掲げる研究キーワードが多いものほど大きく描画したワードクラウドである．
                 詳しいキーワードから，大雑把なキーワードまで様々なものが挙げられている．
               </CardText>
-              <div className='text-center' style={{'paddingTop': '24px'}}>
+              <div className='text-center' style={{'paddingTop': '24px', 'paddingBottom': '24px'}}>
                 <FirebaseImg src='svg/keywordcloud.svg' imgStyle={{'width': '90%'}} />
               </div>
             </div>

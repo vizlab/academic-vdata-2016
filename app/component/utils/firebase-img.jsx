@@ -1,5 +1,6 @@
 import React from 'react'
 import {storage} from '../../service/firebase'
+import {Loading} from './loading'
 
 export class FirebaseImg extends React.Component {
   constructor (props) {
@@ -21,7 +22,7 @@ export class FirebaseImg extends React.Component {
 
   render () {
     return <div>
-      {this.state.isLoaded ? <img src={this.state.src} style={this.props.imgStyle} /> : ''}
+      {this.state.isLoaded ? <img src={this.state.src} style={this.props.imgStyle} /> : <Loading />}
     </div>
   }
 }
