@@ -1,0 +1,6 @@
+[{
+  "origin": ["https://academic-vdata-2016.firebaseapp.com", "http://localhost:3000"],
+  "responseHeader": ["*"],
+  "method": ["GET"],
+  "maxAgeSeconds": 86400
+}]
