@@ -62,7 +62,7 @@ export class ReactNetworkBasic extends React.Component {
         x1: this.state.width * edge.normalizedX1,
         y1: this.state.height * edge.normalizedY1,
         x2: this.state.width * edge.normalizedX2,
-        y2: this.state.height * edge.normalizedY2,
+        y2: this.state.height * edge.normalizedY2
       })
     })
     this.setState({nodes, edges})
