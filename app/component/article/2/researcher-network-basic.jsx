@@ -19,6 +19,8 @@ export class ReactNetworkBasic extends React.Component {
 
     this.marginRatio = 0.1
     this.heightRatio = 0.8
+    this.resizeTime = 500
+    this.r = 4
   }
 
   componentDidMount () {
@@ -45,7 +47,7 @@ export class ReactNetworkBasic extends React.Component {
     let timer
     window.addEventListener('resize', () => {
       clearTimeout(timer)
-      timer = window.setTimeout(this.onResize.bind(this), 500)
+      timer = window.setTimeout(this.onResize.bind(this), this.resizeTime)
     })
   }
 
@@ -113,7 +115,7 @@ export class ReactNetworkBasic extends React.Component {
         cy,
         normalizedX,
         normalizedY,
-        'r': 4,
+        'r': this.r,
         'key': `node_${datum.id}`,
         'fill': 'black'
       })
