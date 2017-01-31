@@ -5,7 +5,7 @@ export class Network extends React.Component {
     return <svg width={this.props.width} height={this.props.height}>
       <g id='nodes'>
         {this.props.nodes.map((node) => {
-          return <circle key={node.id} cx={node.x} cy={node.y} r={node.r} fill={node.color} />
+          return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} />
         })}
       </g>
       <g />
