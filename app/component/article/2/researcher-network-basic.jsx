@@ -4,6 +4,7 @@ import {csv} from 'd3-request'
 import {Loading} from '../../utils/loading'
 import {storage} from '../../../service/firebase'
 import {ScalableNetwork} from '../../network/scalable-network'
+import {c40} from '../../../constants'
 
 export class ResearcherNetworkBasic extends React.Component {
   constructor (props) {
@@ -33,6 +34,16 @@ export class ResearcherNetworkBasic extends React.Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      nodes: this.state.nodes.map((node) => {
+        return Object.assign(node, {
+          r: nextProps.r
+        })
+      })
+    })
+  }
+
   afterFetchEdgeData ({edgeData, nodeData}) {
     const id2Node = {}
     nodeData.forEach((node) => {
@@ -52,6 +63,7 @@ export class ResearcherNetworkBasic extends React.Component {
         normalizedY2,
         key: `edge_${idx}`,
         strokeWidth: 1,
+        strokeOpacity: 0.3,
         stroke: 'gray'
       })
     })
@@ -66,9 +78,9 @@ export class ResearcherNetworkBasic extends React.Component {
       nodes.push({
         normalizedX,
         normalizedY,
-        'r': this.r,
+        'r': this.props.r,
         'key': `node_${datum.id}`,
-        'fill': 'black'
+        'fill': c40[Number(datum['Modularity Class'])]
       })
     })
     this.setState({nodes, isLoaded: true})
@@ -88,5 +100,6 @@ export class ResearcherNetworkBasic extends React.Component {
 }
 ResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number
+  height: React.PropTypes.number,
+  r: React.PropTypes.number
 }

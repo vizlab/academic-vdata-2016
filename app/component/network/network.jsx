@@ -5,7 +5,7 @@ export class Network extends React.Component {
     return <svg width={this.props.width} height={this.props.height}>
       <g>
         {this.props.edges.map((edge) => {
-          return <line x1={edge.x1} y1={edge.y1} x2={edge.x2} y2={edge.y2} key={edge.key} strokeWidth={edge.strokeWidth} stroke={edge.stroke} />
+          return <line x1={edge.x1} y1={edge.y1} x2={edge.x2} y2={edge.y2} key={edge.key} strokeWidth={edge.strokeWidth} stroke={edge.stroke} strokeOpacity={edge.strokeOpacity} />
         })}
       </g>
       <g>
