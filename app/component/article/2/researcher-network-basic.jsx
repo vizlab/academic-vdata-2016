@@ -18,11 +18,10 @@ export class ReactNetworkBasic extends React.Component {
     }
 
     this.marginRatio = 0.1
-    this.heightRatio = 0.8
     this.r = 4
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.updateRectSize()
     window.addEventListener('resize', this.updateRectSize.bind(this))
 
@@ -84,18 +83,23 @@ export class ReactNetworkBasic extends React.Component {
   }
 
   updateRectSize () {
-    const {width} = ReactDOM.findDOMNode(this).getBoundingClientRect()
-    const height = window.innerHeight * this.heightRatio
-    this.setState({width, height})
+    // fix later
+    setTimeout(() => {
+      const {width, height} = ReactDOM.findDOMNode(this).getBoundingClientRect()
+      this.setState({width, height})
+    }, 0)
+
   }
 
   render () {
-    return <div>
-      {
-        this.state.isLoaded
-        ? <ScalableNetwork width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} />
-        : <Loading />
-      }
-    </div>
+    return (
+      <div style={{'width': '100%', 'height': '100%'}}>
+        {
+          this.state.isLoaded
+          ? <ScalableNetwork width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} />
+          : <Loading />
+        }
+      </div>
+    )
   }
 }

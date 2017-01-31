@@ -12,8 +12,22 @@ export class Article2 extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isContentExpand: false
+      isContentExpand: false,
+      innerHeight: 0
     }
+  }
+
+  componentWillMount () {
+    this.updateRectSize()
+    window.addEventListener('resize', this.updateRectSize.bind(this))
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.updateRectSize)
+  }
+
+  updateRectSize () {
+    this.setState({innerHeight: window.innerHeight})
   }
 
   toggleContentExpand () {
@@ -26,7 +40,7 @@ export class Article2 extends React.Component {
         <div style={{'visibility': this.state.isContentExpand ? 'hidden' : ''}}>
           <ArticleHeader />
           <div className='container'>
-            <Paper style={{'position': 'relative'}}>
+            <Paper style={{'position': 'relative', 'height': this.state.innerHeight * 0.8}}>
               <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
                 <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
               </IconButton>
