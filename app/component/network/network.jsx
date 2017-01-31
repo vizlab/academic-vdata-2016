@@ -13,12 +13,20 @@ export class Network extends React.Component {
           return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} />
         })}
       </g>
+      <g>
+        {
+          this.props.texts.map((text) => {
+            return <text key={text.key} x={text.x} y={text.y} fontSize={text.fontSize}>{text.text}</text>
+          })
+        }
+      </g>
     </svg>
   }
 }
 Network.propTypes = {
   nodes: React.PropTypes.array,
   edges: React.PropTypes.array,
+  texts: React.PropTypes.array,
   height: React.PropTypes.number,
   width: React.PropTypes.number
 }

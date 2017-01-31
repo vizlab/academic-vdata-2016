@@ -12,13 +12,13 @@ export class ResearcherNetworkBasic extends React.Component {
     this.state = {
       nodes: [],
       edges: [],
+      texts: [],
       width: 0,
       height: 0,
       isLoaded: false
     }
 
     this.marginRatio = 0.1
-    this.r = 4
   }
 
   componentWillMount () {
@@ -29,16 +29,6 @@ export class ResearcherNetworkBasic extends React.Component {
           csv(url, (edgeData) => {
             this.afterFetchEdgeData({nodeData, edgeData})
           })
-        })
-      })
-    })
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      nodes: this.state.nodes.map((node) => {
-        return Object.assign(node, {
-          r: nextProps.r
         })
       })
     })
@@ -62,7 +52,6 @@ export class ResearcherNetworkBasic extends React.Component {
         normalizedX2,
         normalizedY2,
         key: `edge_${idx}`,
-        strokeWidth: 1,
         strokeOpacity: 0.3,
         stroke: 'gray'
       })
@@ -72,18 +61,24 @@ export class ResearcherNetworkBasic extends React.Component {
 
   afterFetchNodeData (nodeData) {
     const nodes = []
+    const texts = []
     nodeData.forEach((datum) => {
       const normalizedX = Number(datum.x) * (1 - this.marginRatio) + this.marginRatio / 2
       const normalizedY = Number(datum.y) * (1 - this.marginRatio) + this.marginRatio / 2
       nodes.push({
         normalizedX,
         normalizedY,
-        'r': this.props.r,
         'key': `node_${datum.id}`,
         'fill': c40[Number(datum['Modularity Class'])]
       })
+      texts.push({
+        normalizedX,
+        normalizedY,
+        'text': datum[this.props.textKey],
+        'key': `text_${datum.id}`
+      })
     })
-    this.setState({nodes, isLoaded: true})
+    this.setState({nodes, texts, isLoaded: true})
   }
 
   render () {
@@ -91,7 +86,7 @@ export class ResearcherNetworkBasic extends React.Component {
       <div style={{'width': '100%', 'height': '100%'}}>
         {
           this.state.isLoaded
-          ? <ScalableNetwork width={this.props.width} height={this.props.height} nodes={this.state.nodes} edges={this.state.edges} />
+          ? <ScalableNetwork width={this.props.width} height={this.props.height} nodes={this.state.nodes} edges={this.state.edges} texts={this.state.texts} />
           : <Loading />
         }
       </div>
@@ -101,5 +96,5 @@ export class ResearcherNetworkBasic extends React.Component {
 ResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  r: React.PropTypes.number
+  textKey: React.PropTypes.string
 }
