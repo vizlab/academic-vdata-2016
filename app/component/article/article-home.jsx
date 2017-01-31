@@ -1,5 +1,6 @@
 import React from 'react'
 
+import {Footer} from '../footer/footer'
 import {Article1Card} from './1/article-1-card'
 import {Article2Card} from './2/article-2-card'
 import {Article3Card} from './3/article-3-card'
@@ -32,6 +33,7 @@ export class ArticleHome extends React.Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

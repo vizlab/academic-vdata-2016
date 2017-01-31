@@ -6,6 +6,7 @@ import ReactGA from 'react-ga'
 import {LoginForm} from './login-form'
 import {SignupForm} from './signup-form'
 import {LoginImg} from './login-img'
+import {Footer} from '../footer/footer'
 
 export class LoginComponent extends React.Component {
   constructor (props) {
@@ -47,6 +48,7 @@ export class LoginComponent extends React.Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }
