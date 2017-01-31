@@ -3,8 +3,9 @@ import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
-import {ReactNetworkBasic} from './researcher-network-basic'
 
+import {ReactNetworkBasic} from './researcher-network-basic'
+import {Footer} from '../../footer/footer'
 import {ArticleHeader} from '../article-header'
 
 export class Article2 extends React.Component {
@@ -22,14 +23,17 @@ export class Article2 extends React.Component {
   render () {
     return (
       <div>
-        <ArticleHeader />
-        <div className='container'>
-          <Paper style={{'position': 'relative'}}>
-            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
-              <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
-            </IconButton>
-            <ReactNetworkBasic />
-          </Paper>
+        <div style={{'visibility': this.state.isContentExpand ? 'hidden' : ''}}>
+          <ArticleHeader />
+          <div className='container'>
+            <Paper style={{'position': 'relative'}}>
+              <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
+                <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
+              </IconButton>
+              <ReactNetworkBasic />
+            </Paper>
+          </div>
+          <Footer />
         </div>
 
         <div style={{'visibility': this.state.isContentExpand ? '' : 'hidden', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white'}}>

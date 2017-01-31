@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 import {Loading} from '../../utils/loading'
 import {storage} from '../../../service/firebase'
-import {Network} from '../../network/network'
+import {ScalableNetwork} from '../../network/scalable-network'
 
 export class ReactNetworkBasic extends React.Component {
   constructor (props) {
@@ -19,13 +19,12 @@ export class ReactNetworkBasic extends React.Component {
 
     this.marginRatio = 0.1
     this.heightRatio = 0.8
-    this.resizeTime = 500
     this.r = 4
   }
 
   componentDidMount () {
     this.updateRectSize()
-    this.addEventListener()
+    window.addEventListener('resize', this.updateRectSize.bind(this))
 
     storage.ref('nodes.csv').getDownloadURL().then((url) => {
       csv(url, (nodeData) => {
@@ -40,34 +39,7 @@ export class ReactNetworkBasic extends React.Component {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.onResize)
-  }
-
-  addEventListener () {
-    let timer
-    window.addEventListener('resize', () => {
-      clearTimeout(timer)
-      timer = window.setTimeout(this.onResize.bind(this), this.resizeTime)
-    })
-  }
-
-  onResize () {
-    if (!this.updateRectSize()) return
-    const nodes = this.state.nodes.map((node) => {
-      return Object.assign(node, {
-        cx: this.state.width * node.normalizedX,
-        cy: this.state.height * node.normalizedY
-      })
-    })
-    const edges = this.state.edges.map((edge) => {
-      return Object.assign(edge, {
-        x1: this.state.width * edge.normalizedX1,
-        y1: this.state.height * edge.normalizedY1,
-        x2: this.state.width * edge.normalizedX2,
-        y2: this.state.height * edge.normalizedY2
-      })
-    })
-    this.setState({nodes, edges})
+    window.removeEventListener('resize', this.updateRectSize)
   }
 
   afterFetchEdgeData ({edgeData, nodeData}) {
@@ -82,15 +54,7 @@ export class ReactNetworkBasic extends React.Component {
       const normalizedY1 = Number(source.y) * (1 - this.marginRatio) + this.marginRatio / 2
       const normalizedX2 = Number(target.x) * (1 - this.marginRatio) + this.marginRatio / 2
       const normalizedY2 = Number(target.y) * (1 - this.marginRatio) + this.marginRatio / 2
-      const x1 = this.state.width * normalizedX1
-      const y1 = this.state.height * normalizedY1
-      const x2 = this.state.width * normalizedX2
-      const y2 = this.state.height * normalizedY2
       edges.push({
-        x1,
-        y1,
-        x2,
-        y2,
         normalizedX1,
         normalizedY1,
         normalizedX2,
@@ -108,11 +72,7 @@ export class ReactNetworkBasic extends React.Component {
     nodeData.forEach((datum) => {
       const normalizedX = Number(datum.x) * (1 - this.marginRatio) + this.marginRatio / 2
       const normalizedY = Number(datum.y) * (1 - this.marginRatio) + this.marginRatio / 2
-      const cx = this.state.width * normalizedX
-      const cy = this.state.height * normalizedY
       nodes.push({
-        cx,
-        cy,
         normalizedX,
         normalizedY,
         'r': this.r,
@@ -127,14 +87,15 @@ export class ReactNetworkBasic extends React.Component {
     const {width} = ReactDOM.findDOMNode(this).getBoundingClientRect()
     const height = window.innerHeight * this.heightRatio
     this.setState({width, height})
-    const oldWidth = this.state.width
-    const oldHeight = this.state.height
-    return oldWidth === width && oldHeight === height
   }
 
   render () {
     return <div>
-      {this.state.isLoaded ? <Network width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} /> : <Loading />}
+      {
+        this.state.isLoaded
+        ? <ScalableNetwork width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} />
+        : <Loading />
+      }
     </div>
   }
 }
