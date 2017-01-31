@@ -41,14 +41,22 @@ export class ReactNetworkBasic extends React.Component {
   }
 
   onResize () {
-    this.updateRectSize()
+    if (!this.updateRectSize()) return
     const nodes = this.state.nodes.map((node) => {
       return Object.assign(node, {
         cx: this.state.width * node.normalizedX,
         cy: this.state.height * node.normalizedY
       })
     })
-    this.setState({nodes})
+    const edges = this.state.edges.map((edge) => {
+      return Object.assign(edge, {
+        x1: this.state.width * edge.normalizedX1,
+        y1: this.state.height * edge.normalizedY1,
+        x2: this.state.width * edge.normalizedX2,
+        y2: this.state.height * edge.normalizedY2,
+      })
+    })
+    this.setState({nodes, edges})
   }
 
   afterFetchEdgeData ({edgeData, nodeData}) {
@@ -108,6 +116,9 @@ export class ReactNetworkBasic extends React.Component {
     const {width} = ReactDOM.findDOMNode(this).getBoundingClientRect()
     const height = window.innerHeight * this.heightRatio
     this.setState({width, height})
+    const oldWidth = this.state.width
+    const oldHeight = this.state.height
+    return oldWidth === width && oldHeight === height
   }
 
   render () {
