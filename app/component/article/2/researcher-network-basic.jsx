@@ -23,7 +23,8 @@ export class ReactNetworkBasic extends React.Component {
 
   componentDidMount () {
     this.updateRectSize()
-    window.addEventListener('resize', this.onResize.bind(this))
+    this.addEventListener()
+
     storage.ref('nodes.csv').getDownloadURL().then((url) => {
       csv(url, (nodeData) => {
         this.afterFetchNodeData(nodeData)
@@ -38,6 +39,14 @@ export class ReactNetworkBasic extends React.Component {
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.onResize)
+  }
+
+  addEventListener () {
+    let timer
+    window.addEventListener('resize', () => {
+      clearTimeout(timer)
+      timer = window.setTimeout(this.onResize.bind(this), 500)
+    })
   }
 
   onResize () {
