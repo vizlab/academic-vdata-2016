@@ -13,7 +13,7 @@ export class Article2 extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isContentExpand: true,
+      isContentExpand: false,
       contentHeight: 0,
       contentWidth: 0,
       expandContentHeight: 0,

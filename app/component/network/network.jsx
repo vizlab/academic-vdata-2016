@@ -16,7 +16,20 @@ export class Network extends React.Component {
       <g>
         {
           this.props.texts.map((text) => {
-            return <text key={text.key} x={text.x} y={text.y} fontSize={text.fontSize}>{text.text}</text>
+            return (
+              <text
+                key={text.key}
+                x={text.x}
+                y={text.y}
+                fontSize={text.fontSize}
+                fill={text.fill}
+                stroke={text.stroke}
+                strokeWidth={text.strokeWidth}
+                paintOrder={text.paintOrder}
+              >
+                {text.text}
+              </text>
+            )
           })
         }
       </g>

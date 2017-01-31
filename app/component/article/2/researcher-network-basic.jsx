@@ -75,7 +75,10 @@ export class ResearcherNetworkBasic extends React.Component {
         normalizedX,
         normalizedY,
         'text': datum[this.props.textKey],
-        'key': `text_${datum.id}`
+        'key': `text_${datum.id}`,
+        'fill': '#333333',
+        'stroke': '#ffffff',
+        'paintOrder': 'stroke'
       })
     })
     this.setState({nodes, texts, isLoaded: true})
