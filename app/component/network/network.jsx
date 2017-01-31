@@ -13,7 +13,7 @@ export class Network extends React.Component {
   }
 }
 Network.propTypes = {
-  nodes: React.PropTypes.object,
+  nodes: React.PropTypes.array,
   height: React.PropTypes.number,
   width: React.PropTypes.number
 }
