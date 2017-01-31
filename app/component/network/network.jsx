@@ -12,3 +12,8 @@ export class Network extends React.Component {
     </svg>
   }
 }
+Network.propTypes = {
+  nodes: React.PropTypes.object,
+  height: React.PropTypes.number,
+  width: React.PropTypes.number
+}
