@@ -1,12 +1,11 @@
 import React from 'react'
 import {csv} from 'd3-request'
-import ReactDOM from 'react-dom'
 
 import {Loading} from '../../utils/loading'
 import {storage} from '../../../service/firebase'
 import {ScalableNetwork} from '../../network/scalable-network'
 
-export class ReactNetworkBasic extends React.Component {
+export class ResearcherNetworkBasic extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -22,9 +21,6 @@ export class ReactNetworkBasic extends React.Component {
   }
 
   componentWillMount () {
-    this.updateRectSize()
-    window.addEventListener('resize', this.updateRectSize.bind(this))
-
     storage.ref('nodes.csv').getDownloadURL().then((url) => {
       csv(url, (nodeData) => {
         this.afterFetchNodeData(nodeData)
@@ -35,10 +31,6 @@ export class ReactNetworkBasic extends React.Component {
         })
       })
     })
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this.updateRectSize)
   }
 
   afterFetchEdgeData ({edgeData, nodeData}) {
@@ -82,24 +74,19 @@ export class ReactNetworkBasic extends React.Component {
     this.setState({nodes, isLoaded: true})
   }
 
-  updateRectSize () {
-    // fix later
-    setTimeout(() => {
-      const {width, height} = ReactDOM.findDOMNode(this).getBoundingClientRect()
-      this.setState({width, height})
-    }, 0)
-
-  }
-
   render () {
     return (
       <div style={{'width': '100%', 'height': '100%'}}>
         {
           this.state.isLoaded
-          ? <ScalableNetwork width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} />
+          ? <ScalableNetwork width={this.props.width} height={this.props.height} nodes={this.state.nodes} edges={this.state.edges} />
           : <Loading />
         }
       </div>
     )
   }
+}
+ResearcherNetworkBasic.propTypes = {
+  width: React.PropTypes.number,
+  height: React.PropTypes.number
 }

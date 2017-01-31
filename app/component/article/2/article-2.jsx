@@ -1,10 +1,11 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
+import ReactDOM from 'react-dom'
 import IconButton from 'material-ui/IconButton'
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
 
-import {ReactNetworkBasic} from './researcher-network-basic'
+import {ResearcherNetworkBasic} from './researcher-network-basic'
 import {Footer} from '../../footer/footer'
 import {ArticleHeader} from '../article-header'
 
@@ -13,7 +14,10 @@ export class Article2 extends React.Component {
     super(props)
     this.state = {
       isContentExpand: false,
-      innerHeight: 0
+      contentHeight: 0,
+      contentWidth: 0,
+      expandContentHeight: 0,
+      expandContentWidth: 0
     }
   }
 
@@ -27,7 +31,18 @@ export class Article2 extends React.Component {
   }
 
   updateRectSize () {
-    this.setState({innerHeight: window.innerHeight})
+    setTimeout(() => {
+      const contentHeight = window.innerHeight * 0.8 | 0
+      const contentWidth = ReactDOM.findDOMNode(this.refs.articleContent1).getBoundingClientRect().width | 0
+      const expandContentHeight = window.innerHeight - 100 | 0
+      const expandContentWidth = window.innerWidth | 0
+      this.setState({
+        contentHeight,
+        contentWidth,
+        expandContentHeight,
+        expandContentWidth
+      })
+    }, 0)
   }
 
   toggleContentExpand () {
@@ -40,11 +55,11 @@ export class Article2 extends React.Component {
         <div style={{'visibility': this.state.isContentExpand ? 'hidden' : ''}}>
           <ArticleHeader />
           <div className='container'>
-            <Paper style={{'position': 'relative', 'height': this.state.innerHeight * 0.8}}>
+            <Paper style={{'position': 'relative', 'height': this.state.contentHeight}}>
               <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
                 <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
               </IconButton>
-              <ReactNetworkBasic />
+              <ResearcherNetworkBasic ref='articleContent1' height={this.state.contentHeight} width={this.state.contentWidth} />
             </Paper>
           </div>
           <Footer />
@@ -54,7 +69,7 @@ export class Article2 extends React.Component {
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
             <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
           </IconButton>
-          <ReactNetworkBasic />
+          <ResearcherNetworkBasic height={this.state.expandContentHeight} width={this.state.expandContentWidth} />
         </div>
       </div>
     )
