@@ -48,4 +48,4 @@ export const c40 = [
   '#a55194',
   '#ce6dbd',
   '#de9ed6'
-];
+]

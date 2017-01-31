@@ -17,7 +17,7 @@ export class Article2 extends React.Component {
       contentHeight: 0,
       contentWidth: 0,
       expandContentHeight: 0,
-      expandContentWidth: 0,
+      expandContentWidth: 0
     }
   }
 
