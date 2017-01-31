@@ -11,6 +11,7 @@ export class ReactNetworkBasic extends React.Component {
     super(props)
     this.state = {
       nodes: [],
+      edges: [],
       width: 0,
       height: 0,
       isLoaded: false
@@ -25,7 +26,12 @@ export class ReactNetworkBasic extends React.Component {
     window.addEventListener('resize', this.onResize.bind(this))
     storage.ref('nodes.csv').getDownloadURL().then((url) => {
       csv(url, (nodeData) => {
-        this.afterFetch(nodeData)
+        this.afterFetchNodeData(nodeData)
+        storage.ref('edges.csv').getDownloadURL().then((url) => {
+          csv(url, (edgeData) => {
+            this.afterFetchEdgeData({nodeData, edgeData})
+          })
+        })
       })
     })
   }
@@ -45,7 +51,40 @@ export class ReactNetworkBasic extends React.Component {
     this.setState({nodes})
   }
 
-  afterFetch (nodeData) {
+  afterFetchEdgeData ({edgeData, nodeData}) {
+    const id2Node = {}
+    nodeData.forEach((node) => {
+      id2Node[node.id] = node
+    })
+    const edges = []
+    edgeData.forEach((edgeDatum, idx) => {
+      const [source, target] = Object.values(edgeDatum).map(id => id2Node[id])
+      const normalizedX1 = Number(source.x) * (1 - this.marginRatio) + this.marginRatio / 2
+      const normalizedY1 = Number(source.y) * (1 - this.marginRatio) + this.marginRatio / 2
+      const normalizedX2 = Number(target.x) * (1 - this.marginRatio) + this.marginRatio / 2
+      const normalizedY2 = Number(target.y) * (1 - this.marginRatio) + this.marginRatio / 2
+      const x1 = this.state.width * normalizedX1
+      const y1 = this.state.height * normalizedY1
+      const x2 = this.state.width * normalizedX2
+      const y2 = this.state.height * normalizedY2
+      edges.push({
+        x1,
+        y1,
+        x2,
+        y2,
+        normalizedX1,
+        normalizedY1,
+        normalizedX2,
+        normalizedY2,
+        key: `edge_${idx}`,
+        strokeWidth: 1,
+        stroke: 'gray'
+      })
+    })
+    this.setState({edges})
+  }
+
+  afterFetchNodeData (nodeData) {
     const nodes = []
     nodeData.forEach((datum) => {
       const normalizedX = Number(datum.x) * (1 - this.marginRatio) + this.marginRatio / 2
@@ -59,7 +98,7 @@ export class ReactNetworkBasic extends React.Component {
         normalizedY,
         'r': 4,
         'key': `node_${datum.id}`,
-        'fill': 'gray'
+        'fill': 'black'
       })
     })
     this.setState({nodes, isLoaded: true})
@@ -73,7 +112,7 @@ export class ReactNetworkBasic extends React.Component {
 
   render () {
     return <div>
-      {this.state.isLoaded ? <Network width={this.state.width} height={this.state.height} nodes={this.state.nodes} /> : <Loading />}
+      {this.state.isLoaded ? <Network width={this.state.width} height={this.state.height} nodes={this.state.nodes} edges={this.state.edges} /> : <Loading />}
     </div>
   }
 }
