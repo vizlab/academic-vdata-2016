@@ -101,6 +101,9 @@ export class Article2 extends React.Component {
               />
             </Paper>
             <Pagination currentPage={2} />
+            <div>
+              <a href='/articles'>- home -</a>
+            </div>
           </div>
           <Footer />
         </div>
