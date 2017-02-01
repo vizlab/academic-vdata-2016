@@ -25,3 +25,5 @@ Articles.propTypes = {
     id: React.PropTypes.string
   })
 }
+
+export const articleAmount = 5

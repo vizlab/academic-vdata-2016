@@ -9,6 +9,7 @@ import {Footer} from '../../footer/footer'
 import {title} from './contents'
 import {FirebaseImg} from '../../utils/firebase-img'
 import {ArticleHeader} from '../article-header'
+import {Pagination} from '../pagination'
 
 export class Article1 extends React.Component {
   render () {
@@ -83,6 +84,7 @@ export class Article1 extends React.Component {
               </div>
             </div>
           </Paper>
+          <Pagination currentPage={1} />
         </div>
         <Footer />
       </div>
