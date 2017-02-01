@@ -5,7 +5,6 @@ import {
 } from 'material-ui/Card'
 import Paper from 'material-ui/Paper'
 
-import {Footer} from '../../footer/footer'
 import {title} from './contents'
 import {FirebaseImg} from '../../utils/firebase-img'
 import {ArticleHeader} from '../article-header'
@@ -89,7 +88,6 @@ export class Article1 extends React.Component {
             <a href='/articles'>- home -</a>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
