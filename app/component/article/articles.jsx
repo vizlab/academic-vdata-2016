@@ -26,4 +26,4 @@ Articles.propTypes = {
   })
 }
 
-export const articleAmount = 5
+export const articleAmount = 2

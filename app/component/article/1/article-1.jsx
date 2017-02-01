@@ -85,6 +85,9 @@ export class Article1 extends React.Component {
             </div>
           </Paper>
           <Pagination currentPage={1} />
+          <div className='text-center'>
+            <a href='/articles'>- home -</a>
+          </div>
         </div>
         <Footer />
       </div>

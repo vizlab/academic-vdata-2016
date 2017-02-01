@@ -17,7 +17,6 @@ export class Pagination extends React.Component {
           {
             pages
               .map((num) => {
-                console.log(num === this.props.currentPage)
                 return this.props.currentPage === num
                   ? (
                     <li key={num} className='page-item active disabled'>
@@ -34,7 +33,7 @@ export class Pagination extends React.Component {
                   )
               })
           }
-          <li className={{'page-item': true, 'disabled': this.props.currentPage === articleAmount}}>
+          <li className={`page-item ${this.props.currentPage === articleAmount ? 'disabled' : ''}`}>
             <a className='page-link' href='#'>Next</a>
           </li>
         </ul>

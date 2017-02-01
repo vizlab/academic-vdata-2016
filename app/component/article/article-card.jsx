@@ -3,28 +3,23 @@ import {
   Card,
   CardMedia,
   CardTitle,
-  CardText,
-  CardActions
+  CardText
 } from 'material-ui/Card'
-import RaisedButton from 'material-ui/RaisedButton'
 
 export class ArticleCard extends React.Component {
   render () {
     return (
       <Card style={{'margin': '12px'}}>
-        <CardMedia
-          overlay={<CardTitle title={this.props.title} />}
-        >
-          <img src={this.props.imgPath} />
-        </CardMedia>
-        <CardText>
-          {this.props.text}
-        </CardText>
-        <CardActions>
-          <a href={this.props.articlePath}>
-            <RaisedButton label='詳細を見る' />
-          </a>
-        </CardActions>
+        <a href={this.props.articlePath}>
+          <CardMedia
+            overlay={<CardTitle title={this.props.title} />}
+          >
+            <img src={this.props.imgPath} />
+          </CardMedia>
+          <CardText style={{'textDecoration': 'none'}}>
+            {this.props.text}
+          </CardText>
+        </a>
       </Card>
     )
   }
