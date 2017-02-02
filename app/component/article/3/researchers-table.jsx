@@ -21,7 +21,6 @@ export class ResearchersTable extends React.Component {
           if (a['betweenness_centrality'] < b['betweenness_centrality']) return 1
           return 0
         })
-        console.log(nodes)
         this.setState({
           researchers: nodes.splice(0, 100)
         })

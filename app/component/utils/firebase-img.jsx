@@ -23,7 +23,7 @@ export class FirebaseImg extends React.Component {
 
   render () {
     return <div>
-      {this.state.isLoaded ? <img src={this.state.src} style={this.props.imgStyle} /> : <Loading />}
+      {this.state.isLoaded ? <img src={this.state.src} style={this.props.imgStyle} className='img-fluid' /> : <Loading />}
     </div>
   }
 }
