@@ -19,7 +19,7 @@ export class LoginImg extends React.Component {
         }}>
           <div style={{'color': 'white', 'padding': '24px', 'fontSize': '24px'}}>
             <p style={{'textShadow': ' 5px  5px 10px black, -5px  5px 10px black, 5px -5px 10px black, -5px -5px 10px black'}}>
-              アンケート調査のご回答は済ませましたでしょうか？
+              アンケート調査のご回答はもうお済みでしょうか？
             </p>
             <p style={{'textShadow': ' 5px  5px 10px black, -5px  5px 10px black, 5px -5px 10px black, -5px -5px 10px black'}}>
               まだであれば「
