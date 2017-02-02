@@ -5,7 +5,6 @@ const marginRatio = 0.1
 const defaultRadius = 1
 
 const nodeDataFormatter = (nodeData) => {
-  console.log('node data formatter')
   const nodes = []
   const texts = []
   nodeData.forEach((datum) => {
@@ -31,7 +30,6 @@ const nodeDataFormatter = (nodeData) => {
       data: datum
     })
   })
-  console.log('node data formatter done')
   return {nodes, texts}
 }
 
@@ -58,7 +56,6 @@ const edgeDataFormatter = ({nodeData, edgeData}) => {
       data: edgeDatum
     })
   })
-  console.log('edges data formatter done')
   return {edges}
 }
 

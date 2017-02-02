@@ -9,6 +9,7 @@ import {Pagination} from '../pagination'
 import {ArticleHeader} from '../article-header'
 import {title} from './contents'
 import {ResearcherNetworkBetweenness} from '../../network/researcher-network-betweenness'
+import {ResearchersTable} from './researchers-table'
 
 export class Article3 extends React.Component {
   constructor (props) {
@@ -73,11 +74,13 @@ export class Article3 extends React.Component {
             />
           </Paper>
           <h3 className='mb-3'>異分野連携のキーとなる研究者トップ100</h3>
-
+          <Paper className='mb-5 p-5' style={{'height': '500px', 'overflowY': 'scroll'}}>
+            <ResearchersTable />
+          </Paper>
           <Pagination currentPage={3} />
         </div>
 
-        <div style={{'visibility': this.state.isContentExpand ? '' : 'hidden', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
+        <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
             <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
           </IconButton>

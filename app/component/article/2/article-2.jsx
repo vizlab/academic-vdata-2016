@@ -100,14 +100,14 @@ export class Article2 extends React.Component {
           <Pagination currentPage={2} />
         </div>
 
-        <div style={{'visibility': this.state.isContentExpand ? '' : 'hidden', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
+        <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
             <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
           </IconButton>
-          {/*<ResearcherNetworkBasic*/}
-            {/*height={this.state.expandContentHeight}*/}
-            {/*width={this.state.expandContentWidth}*/}
-          {/*/>*/}
+          <ResearcherNetworkBasic
+            height={this.state.expandContentHeight}
+            width={this.state.expandContentWidth}
+          />
         </div>
       </div>
     )
