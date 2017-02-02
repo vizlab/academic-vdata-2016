@@ -14,15 +14,17 @@ export class ResearchersTable extends React.Component {
   componentWillMount () {
     cacheLoader.getCsvFileFromFirebaseStorage('nodes.csv')
       .then((nodes) => {
-        nodes
+        const top100Nodes = nodes
           .map(node => Object.assign(node, {'betweenness_centrality': Number(node['betweenness_centrality'])}))
-        nodes.sort((a, b) => {
-          if (a['betweenness_centrality'] > b['betweenness_centrality']) return -1
-          if (a['betweenness_centrality'] < b['betweenness_centrality']) return 1
-          return 0
-        })
+          .slice()
+          .sort((a, b) => {
+            if (a['betweenness_centrality'] > b['betweenness_centrality']) return -1
+            if (a['betweenness_centrality'] < b['betweenness_centrality']) return 1
+            return 0
+          })
+          .splice(0, 100)
         this.setState({
-          researchers: nodes.splice(0, 100)
+          researchers: top100Nodes
         })
       })
   }
