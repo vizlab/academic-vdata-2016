@@ -65,7 +65,7 @@ export class Article3 extends React.Component {
           </div>
           <h3 className='mb-3'>注目すべき研究者</h3>
           <Paper className='mb-5' style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent3'>
-            <Link to={{'pathname': '/network-viewer', 'query': {'type': 'basic'}}}>
+            <Link to={{'pathname': '/network-viewer', 'query': {'type': 'betweenness'}}}>
               <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
                 <ActionOpenInNew />
               </IconButton>
