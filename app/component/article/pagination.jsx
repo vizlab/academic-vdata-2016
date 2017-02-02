@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {articleAmount} from './articles'
+import {articleAmount} from './article-home'
 
 export class Pagination extends React.Component {
   render () {
@@ -34,7 +34,7 @@ export class Pagination extends React.Component {
               })
           }
           <li className={`page-item ${this.props.currentPage === articleAmount ? 'disabled' : ''}`}>
-            <a className='page-link' href='#'>Next</a>
+            <a className='page-link' href={`/articles/${this.props.currentPage + 1}`}>Next</a>
           </li>
         </ul>
       </nav>

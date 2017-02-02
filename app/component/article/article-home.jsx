@@ -8,6 +8,16 @@ import {Article2Card} from './2/article-2-card'
 
 import {ArticleHeader} from './article-header'
 
+const articles = [
+  <Article1Card />,
+  <Article2Card />
+  // <Article3Card />,
+  // <Article4Card />,
+  // <Article5Card />
+]
+
+export const articleAmount = articles.length
+
 export class ArticleHome extends React.Component {
   render () {
     return (
@@ -15,26 +25,12 @@ export class ArticleHome extends React.Component {
         <ArticleHeader />
         <div className='container'>
           <div className='row'>
-            <div className='col-md-6'>
-              <Article1Card />
-            </div>
-            <div className='col-md-6'>
-              <Article2Card />
-            </div>
-
+            {
+              articles.map((article, idx) => <div key={idx} className='col-md-6'>{article}</div>)
+            }
           </div>
         </div>
       </div>
     )
   }
 }
-//
-// <div className='col-md-6'>
-//   <Article3Card />
-// </div>
-// <div className='col-md-6'>
-//   <Article4Card />
-//   </div>
-//   <div className='col-md-6'>
-//   <Article5Card />
-//   </div>
