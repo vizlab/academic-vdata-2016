@@ -65,8 +65,8 @@ export class Article3 extends React.Component {
           </div>
           <h3 className='mb-3'>注目すべき研究者</h3>
           <Paper className='mb-5' style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent3'>
-            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
-              <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
+            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+              <ActionOpenInNew />
             </IconButton>
             <ResearcherNetworkBetweenness
               height={this.state.contentHeight}
@@ -81,8 +81,8 @@ export class Article3 extends React.Component {
         </div>
 
         <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
-          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
-            <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
+          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+            <NavigationArrowBack />
           </IconButton>
           <ResearcherNetworkBetweenness
             height={this.state.expandContentHeight}

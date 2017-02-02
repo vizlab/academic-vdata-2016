@@ -89,8 +89,8 @@ export class Article2 extends React.Component {
           </Paper>
           <h3 className='mb-3'>アンケートから生成された研究者ネットワークがこれだ!!</h3>
           <Paper style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent2'>
-            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
-              <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
+            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+              <ActionOpenInNew />
             </IconButton>
             <ResearcherNetworkBasic
               height={this.state.contentHeight}
@@ -101,8 +101,8 @@ export class Article2 extends React.Component {
         </div>
 
         <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
-          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
-            <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
+          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+            <NavigationArrowBack />
           </IconButton>
           <ResearcherNetworkBasic
             height={this.state.expandContentHeight}
