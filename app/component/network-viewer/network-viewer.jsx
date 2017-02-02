@@ -4,6 +4,7 @@ import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import IconButton from 'material-ui/IconButton'
 
 import {ResearcherNetworkBasic} from '../network/researcher-network-basic'
+import {ResearcherNetworkBetweenness} from '../network/researcher-network-betweenness'
 
 export class NetworkViewer extends React.Component {
   constructor (props) {
@@ -35,18 +36,34 @@ export class NetworkViewer extends React.Component {
   }
 
   render () {
+    const type = this.props.location.query.type
     return (
       <div>
         <div style={{'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='back' onClick={browserHistory.goBack}>
             <NavigationArrowBack />
           </IconButton>
-          <ResearcherNetworkBasic
-            height={this.state.contentHeight}
-            width={this.state.contentWidth}
-          />
+          {
+            type === 'basic'
+            ? <ResearcherNetworkBasic
+              height={this.state.contentHeight}
+              width={this.state.contentWidth}
+              />
+            : ''
+          }
+          {
+            type === 'betweenness'
+            ? <ResearcherNetworkBetweenness
+              height={this.state.contentHeight}
+              width={this.state.contentWidth}
+              />
+            : ''
+          }
         </div>
       </div>
     )
   }
+}
+NetworkViewer.propTypes = {
+  location: React.PropTypes.object
 }

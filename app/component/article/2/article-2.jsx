@@ -78,7 +78,7 @@ export class Article2 extends React.Component {
           </Paper>
           <h3 className='mb-3'>アンケートから生成された研究者ネットワークがこれだ!!</h3>
           <Paper style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent2'>
-            <Link to={{'pathname': '/network-viewer'}}>
+            <Link to={{'pathname': '/network-viewer', 'query': {'type': 'betweenness'}}}>
               <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
                 <ActionOpenInNew />
               </IconButton>

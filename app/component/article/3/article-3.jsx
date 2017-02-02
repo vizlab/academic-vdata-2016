@@ -1,8 +1,8 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
 import ReactDOM from 'react-dom'
+import {Link} from 'react-router'
 import IconButton from 'material-ui/IconButton'
-import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
 
 import {Pagination} from '../pagination'
@@ -65,9 +65,11 @@ export class Article3 extends React.Component {
           </div>
           <h3 className='mb-3'>注目すべき研究者</h3>
           <Paper className='mb-5' style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent3'>
-            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
-              <ActionOpenInNew />
-            </IconButton>
+            <Link to={{'pathname': '/network-viewer', 'query': {'type': 'basic'}}}>
+              <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+                <ActionOpenInNew />
+              </IconButton>
+            </Link>
             <ResearcherNetworkBetweenness
               height={this.state.contentHeight}
               width={this.state.contentWidth}
@@ -78,16 +80,6 @@ export class Article3 extends React.Component {
             <ResearchersTable />
           </Paper>
           <Pagination currentPage={3} />
-        </div>
-
-        <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
-          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
-            <NavigationArrowBack />
-          </IconButton>
-          <ResearcherNetworkBetweenness
-            height={this.state.expandContentHeight}
-            width={this.state.expandContentWidth}
-          />
         </div>
       </div>
     )
