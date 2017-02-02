@@ -4,6 +4,7 @@ import {csv} from 'd3-request'
 class CacheLoader {
   constructor () {
     this.files = {}
+    this.urls = {}
   }
 
   getCsvFileFromFirebaseStorage (path) {
@@ -16,6 +17,18 @@ class CacheLoader {
           this.files[path] = data
           resolve(data)
         })
+      })
+    })
+  }
+
+  getFileUrlFromFirebaseStorage (path) {
+    if (this.files.hasOwnProperty(path)) {
+      return new Promise((resolve) => resolve(this.urls[path]))
+    }
+    return new Promise((resolve) => {
+      storage.ref(path).getDownloadURL().then((url) => {
+        this.urls[path] = url
+        resolve(url)
       })
     })
   }

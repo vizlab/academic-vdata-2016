@@ -1,9 +1,9 @@
 import React from 'react'
 
 import {Loading} from '../../utils/loading'
-import {cacheLoader} from '../../../service/cache-loader'
 import {ScalableNetwork} from '../../network/scalable-network'
-import {c40} from '../../../constants'
+
+import {networkDataFormatter} from '../../network/network-data-formatter'
 
 export class ResearcherNetworkBasic extends React.Component {
   constructor (props) {
@@ -17,66 +17,16 @@ export class ResearcherNetworkBasic extends React.Component {
       isLoaded: false
     }
 
-    this.marginRatio = 0.1
+    this.nodeData = []
+    this.edgeData = []
   }
 
   componentWillMount () {
-    cacheLoader.getCsvFileFromFirebaseStorage('nodes.csv').then((nodeData) => {
-      this.afterFetchNodeData(nodeData)
-      cacheLoader.getCsvFileFromFirebaseStorage('edges.csv').then((edgeData) => {
-        this.afterFetchEdgeData({nodeData, edgeData})
-      })
+    networkDataFormatter().then(({nodes, edges, texts, nodeData, edgeData}) => {
+      this.nodeData = nodeData
+      this.edgeData = edgeData
+      this.setState({nodes, edges, texts, isLoaded: true})
     })
-  }
-
-  afterFetchEdgeData ({edgeData, nodeData}) {
-    const id2Node = {}
-    nodeData.forEach((node) => {
-      id2Node[node.id] = node
-    })
-    const edges = []
-    edgeData.forEach((edgeDatum, idx) => {
-      const [source, target] = Object.values(edgeDatum).map(id => id2Node[id])
-      const normalizedX1 = Number(source.x) * (1 - this.marginRatio) + this.marginRatio / 2
-      const normalizedY1 = Number(source.y) * (1 - this.marginRatio) + this.marginRatio / 2
-      const normalizedX2 = Number(target.x) * (1 - this.marginRatio) + this.marginRatio / 2
-      const normalizedY2 = Number(target.y) * (1 - this.marginRatio) + this.marginRatio / 2
-      edges.push({
-        normalizedX1,
-        normalizedY1,
-        normalizedX2,
-        normalizedY2,
-        key: `edge_${idx}`,
-        strokeOpacity: 0.3,
-        stroke: 'gray'
-      })
-    })
-    this.setState({edges})
-  }
-
-  afterFetchNodeData (nodeData) {
-    const nodes = []
-    const texts = []
-    nodeData.forEach((datum) => {
-      const normalizedX = Number(datum.x) * (1 - this.marginRatio) + this.marginRatio / 2
-      const normalizedY = Number(datum.y) * (1 - this.marginRatio) + this.marginRatio / 2
-      nodes.push({
-        normalizedX,
-        normalizedY,
-        'key': `node_${datum.id}`,
-        'fill': c40[Number(datum['Modularity Class'])]
-      })
-      texts.push({
-        normalizedX,
-        normalizedY,
-        'text': datum[this.props.textKey],
-        'key': `text_${datum.id}`,
-        'fill': '#333333',
-        'stroke': '#ffffff',
-        'paintOrder': 'stroke'
-      })
-    })
-    this.setState({nodes, texts, isLoaded: true})
   }
 
   render () {

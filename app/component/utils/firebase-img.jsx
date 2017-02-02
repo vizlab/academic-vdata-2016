@@ -1,6 +1,7 @@
 import React from 'react'
-import {storage} from '../../service/firebase'
+
 import {Loading} from './loading'
+import {cacheLoader} from '../../service/cache-loader'
 
 export class FirebaseImg extends React.Component {
   constructor (props) {
@@ -12,7 +13,7 @@ export class FirebaseImg extends React.Component {
   }
 
   componentDidMount () {
-    storage.ref(this.props.src).getDownloadURL().then((url) => {
+    cacheLoader.getFileUrlFromFirebaseStorage(this.props.src).then((url) => {
       this.setState({
         isLoaded: true,
         src: url

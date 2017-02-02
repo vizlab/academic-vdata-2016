@@ -9,6 +9,7 @@ import {Pagination} from '../pagination'
 import {ArticleHeader} from '../article-header'
 import {title} from './contents'
 
+
 export class Article3 extends React.Component {
   constructor (props) {
     super(props)
@@ -66,6 +67,7 @@ export class Article3 extends React.Component {
             <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
               <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
             </IconButton>
+            here
           </Paper>
           <h3 className='mb-3'>異分野連携のキーとなる研究者トップ100</h3>
 
