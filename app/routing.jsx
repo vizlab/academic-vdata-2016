@@ -4,8 +4,10 @@ import {
   Route,
   browserHistory,
   IndexRedirect,
-  Redirect
+  Redirect,
+  applyRouterMiddleware
 } from 'react-router'
+import {useScroll} from 'react-router-scroll'
 
 import {logPageView} from './google-analytics'
 
@@ -16,7 +18,7 @@ import {Articles} from './component/article/articles'
 import {ArticleCtrl} from './component/article/article-ctrl'
 
 export const routerElem = (
-  <Router history={browserHistory} onUpdate={logPageView}>
+  <Router history={browserHistory} onUpdate={logPageView} render={applyRouterMiddleware(useScroll())}>
     <Route path='/' component={RootComponent}>
       <IndexRedirect to='/login' />
       <Route path='login' component={LoginComponent} />
