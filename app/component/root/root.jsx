@@ -4,15 +4,20 @@ import {Footer} from '../footer/footer'
 
 export class RootComponent extends React.Component {
   render () {
+    console.log(this.props.children)
     return (
       <div>
         {this.props.children}
-        <Footer />
+        {
+          this.props.route.path === 'network-viewer'
+          ? <Footer />
+          : ''
+        }
       </div>
     )
   }
 }
 RootComponent.propTypes = {
   children: React.PropTypes.object,
-  location: locationShape
+  route: React.PropTypes.object
 }

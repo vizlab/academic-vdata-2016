@@ -16,6 +16,7 @@ import {RootComponent} from './component/root/root'
 import {ArticleHome} from './component/article/article-home'
 import {Articles} from './component/article/articles'
 import {ArticleCtrl} from './component/article/article-ctrl'
+import {NetworkViewer} from './component/network-viewer/network-viewer'
 
 export const routerElem = (
   <Router history={browserHistory} onUpdate={logPageView} render={applyRouterMiddleware(useScroll())}>
@@ -27,6 +28,7 @@ export const routerElem = (
         <Route path='/articles/home' component={ArticleHome} />
         <Route path='/articles/:id' component={Articles} />
       </Route>
+      <Route path='network-viewer' component={NetworkViewer} />
       <Redirect from='*' to='/' />
     </Route>
   </Router>

@@ -1,8 +1,8 @@
 import React from 'react'
+import {Link} from 'react-router'
 import Paper from 'material-ui/Paper'
 import ReactDOM from 'react-dom'
 import IconButton from 'material-ui/IconButton'
-import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
 
 import {ResearcherNetworkBasic} from '../../network/researcher-network-basic'
@@ -14,11 +14,8 @@ export class Article2 extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isContentExpand: false,
       contentHeight: 0,
-      contentWidth: 0,
-      expandContentHeight: 0,
-      expandContentWidth: 0
+      contentWidth: 0
     }
   }
 
@@ -35,19 +32,11 @@ export class Article2 extends React.Component {
     setTimeout(() => {
       const contentHeight = window.innerHeight * 0.8 | 0
       const contentWidth = ReactDOM.findDOMNode(this.refs.articleContent2).getBoundingClientRect().width | 0
-      const expandContentHeight = window.innerHeight - 50 | 0
-      const expandContentWidth = window.innerWidth | 0
       this.setState({
         contentHeight,
-        contentWidth,
-        expandContentHeight,
-        expandContentWidth
+        contentWidth
       })
     }, 0)
-  }
-
-  toggleContentExpand () {
-    this.setState({isContentExpand: !this.state.isContentExpand})
   }
 
   render () {
@@ -89,25 +78,17 @@ export class Article2 extends React.Component {
           </Paper>
           <h3 className='mb-3'>アンケートから生成された研究者ネットワークがこれだ!!</h3>
           <Paper style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent2'>
-            <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
-              <ActionOpenInNew />
-            </IconButton>
+            <Link to={{'pathname': '/network-viewer'}}>
+              <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
+                <ActionOpenInNew />
+              </IconButton>
+            </Link>
             <ResearcherNetworkBasic
               height={this.state.contentHeight}
               width={this.state.contentWidth}
             />
           </Paper>
           <Pagination currentPage={2} />
-        </div>
-
-        <div style={{'display': this.state.isContentExpand ? '' : 'none', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>
-          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
-            <NavigationArrowBack />
-          </IconButton>
-          <ResearcherNetworkBasic
-            height={this.state.expandContentHeight}
-            width={this.state.expandContentWidth}
-          />
         </div>
       </div>
     )
