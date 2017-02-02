@@ -36,8 +36,8 @@ export class LoginForm extends React.Component {
           <h4>ログイン</h4>
         </div>
         <TextField
-          hintText='Email Field'
-          floatingLabelText='Email'
+          hintText='メールアドレスを入力'
+          floatingLabelText='メールアドレス'
           type='email'
           value={this.state.email}
           onChange={(e) => { this.handleEmailChange(e) }}
@@ -45,8 +45,8 @@ export class LoginForm extends React.Component {
         />
         <br />
         <TextField
-          hintText='Password Field'
-          floatingLabelText='Password'
+          hintText='パスワードを入力'
+          floatingLabelText='パスワード'
           type='password'
           value={this.state.password}
           onChange={(e) => { this.handlePasswordChange(e) }}
@@ -55,7 +55,7 @@ export class LoginForm extends React.Component {
         <br />
         <div className='text-center'>
           <RaiseButton
-            label='login'
+            label='ログイン'
             primary
             onClick={() => this.login(this.state.email, this.state.password)}
             style={{'margin': '12px'}}

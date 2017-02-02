@@ -124,45 +124,45 @@ export class SignupForm extends React.Component {
         </div>
         <p>登録頂いた方には、本アンケート調査に関わる情報（結果更新や新たな企画案内等）をお送りさせて頂きます。</p>
         <TextField
-          hintText='Name Field'
-          floatingLabelText='Name (required)'
-          errorText={this.state.isValidName ? '' : 'This field is required'}
+          hintText='氏名を入力'
+          floatingLabelText='氏名（必須）'
+          errorText={this.state.isValidName ? '' : '必須項目です'}
           type='text'
           value={this.state.name}
           onChange={(e) => { this.handleNameChange(e.target.value) }}
           fullWidth
         />
         <TextField
-          hintText='Department Field'
-          floatingLabelText='Department (required)'
-          errorText={this.state.isValidDepartment ? '' : 'This field is required'}
+          hintText='所属を入力'
+          floatingLabelText='所属（必須）'
+          errorText={this.state.isValidDepartment ? '' : '必須項目です'}
           type='text'
           value={this.state.department}
           onChange={(e) => { this.handleDepartmentChange(e.target.value) }}
           fullWidth
         />
         <TextField
-          hintText='Email Field'
-          floatingLabelText='Email (required)'
-          errorText={this.state.isValidEmail ? '' : 'This email is not valid'}
+          hintText='メールアドレスを入力'
+          floatingLabelText='メールアドレス（必須）'
+          errorText={this.state.isValidEmail ? '' : '正しいメールアドレスを入力してください'}
           type='email'
           value={this.state.email}
           onChange={(e) => { this.handleEmailChange(e.target.value) }}
           fullWidth
         />
         <TextField
-          hintText='Password Field'
-          floatingLabelText='Password (required)'
-          errorText={this.state.isValidPassword ? '' : 'Password should be at least 6 characters'}
+          hintText='パスワードを入力'
+          floatingLabelText='パスワードを入力（必須）'
+          errorText={this.state.isValidPassword ? '' : 'パスワードは6文字以上入力してください'}
           type='password'
           value={this.state.password}
           onChange={(e) => { this.handlePasswordChange(e.target.value) }}
           fullWidth
         />
         <TextField
-          hintText='Password Field'
-          floatingLabelText='Confirm password (required)'
-          errorText={this.state.isValidConfirmPassword ? '' : 'Password does not match the confirm password'}
+          hintText='もう一度パスワードを入力'
+          floatingLabelText='パスワードの確認'
+          errorText={this.state.isValidConfirmPassword ? '' : 'パスワードが一致しません'}
           type='password'
           value={this.state.confirmPassword}
           onChange={(e) => { this.handleConfirmPasswordChange(e.target.value) }}
@@ -171,7 +171,7 @@ export class SignupForm extends React.Component {
         <SelectField
           fullWidth
           errorText={this.state.isValidAnsweredQuestion ? '' : <a target='_blank' href='https://survey2015.symposium-hp.jp/apply.php'>アンケートへの回答をお願いします</a>}
-          floatingLabelText='アンケートへの回答済みですか (required)'
+          floatingLabelText='アンケートへの回答済みですか（必須）'
           floatingLabelFixed
           onChange={(e, i, v) => { this.handleAnsweredQuestionChange(v) }}
           value={this.state.answeredQuestion}
@@ -182,8 +182,8 @@ export class SignupForm extends React.Component {
         </SelectField>
         <SelectField
           fullWidth
-          errorText={this.state.isValidPermitSendMessage ? '' : 'This field is required'}
-          floatingLabelText='今後、このアンケート等に関する学際センターのイベント情報など、送っていいですか？ (required)'
+          errorText={this.state.isValidPermitSendMessage ? '' : '必須項目です'}
+          floatingLabelText='今後、このアンケート等に関する学際センターのイベント情報など、送っていいですか？（必須）'
           floatingLabelFixed
           onChange={(e, i, v) => { this.handlePermitSendMessageChange(v) }}
           value={this.state.permitSendMessage}
@@ -194,7 +194,7 @@ export class SignupForm extends React.Component {
         </SelectField>
         <div className='text-center'>
           <RaiseButton
-            label={this.state.isSending ? 'sending' : 'signup'}
+            label={this.state.isSending ? '送信中' : '登録'}
             disabled={!this.validAll() || this.state.isSending}
             secondary
             onClick={() => this.signup(this.state)}
