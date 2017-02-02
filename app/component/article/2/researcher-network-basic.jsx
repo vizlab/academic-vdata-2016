@@ -1,8 +1,7 @@
 import React from 'react'
-import {csv} from 'd3-request'
 
 import {Loading} from '../../utils/loading'
-import {storage} from '../../../service/firebase'
+import {cacheLoader} from '../../../service/cache-loader'
 import {ScalableNetwork} from '../../network/scalable-network'
 import {c40} from '../../../constants'
 
@@ -22,14 +21,10 @@ export class ResearcherNetworkBasic extends React.Component {
   }
 
   componentWillMount () {
-    storage.ref('nodes.csv').getDownloadURL().then((url) => {
-      csv(url, (nodeData) => {
-        this.afterFetchNodeData(nodeData)
-        storage.ref('edges.csv').getDownloadURL().then((url) => {
-          csv(url, (edgeData) => {
-            this.afterFetchEdgeData({nodeData, edgeData})
-          })
-        })
+    cacheLoader.getCsvFileFromFirebaseStorage('nodes.csv').then((nodeData) => {
+      this.afterFetchNodeData(nodeData)
+      cacheLoader.getCsvFileFromFirebaseStorage('edges.csv').then((edgeData) => {
+        this.afterFetchEdgeData({nodeData, edgeData})
       })
     })
   }
