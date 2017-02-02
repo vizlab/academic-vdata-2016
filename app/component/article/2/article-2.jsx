@@ -99,9 +99,6 @@ export class Article2 extends React.Component {
             />
           </Paper>
           <Pagination currentPage={2} />
-          <div>
-            <a href='/articles'>- home -</a>
-          </div>
         </div>
 
         <div style={{'visibility': this.state.isContentExpand ? '' : 'hidden', 'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%', 'backgroundColor': 'white', 'zIndex': 1000}}>

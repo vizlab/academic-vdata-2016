@@ -5,12 +5,13 @@ import {
   CardTitle,
   CardText
 } from 'material-ui/Card'
+import {Link} from 'react-router'
 
 export class ArticleCard extends React.Component {
   render () {
     return (
       <Card style={{'margin': '12px'}}>
-        <a href={this.props.articlePath}>
+        <Link to={this.props.articlePath}>
           <CardMedia
             overlay={<CardTitle title={this.props.title} />}
           >
@@ -19,7 +20,7 @@ export class ArticleCard extends React.Component {
           <CardText style={{'textDecoration': 'none'}}>
             {this.props.text}
           </CardText>
-        </a>
+        </Link>
       </Card>
     )
   }
