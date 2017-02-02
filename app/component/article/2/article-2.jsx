@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton'
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
 
-import {ResearcherNetworkBasic} from './researcher-network-basic'
+import {ResearcherNetworkBasic} from '../../network/researcher-network-basic'
 import {ArticleHeader} from '../article-header'
 import {title} from './contents'
 import {Pagination} from '../pagination'
@@ -95,7 +95,6 @@ export class Article2 extends React.Component {
             <ResearcherNetworkBasic
               height={this.state.contentHeight}
               width={this.state.contentWidth}
-              textKey={'keyword_1'}
             />
           </Paper>
           <Pagination currentPage={2} />
@@ -105,11 +104,10 @@ export class Article2 extends React.Component {
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
             <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
           </IconButton>
-          <ResearcherNetworkBasic
-            height={this.state.expandContentHeight}
-            width={this.state.expandContentWidth}
-            textKey={'keyword_1'}
-          />
+          {/*<ResearcherNetworkBasic*/}
+            {/*height={this.state.expandContentHeight}*/}
+            {/*width={this.state.expandContentWidth}*/}
+          {/*/>*/}
         </div>
       </div>
     )

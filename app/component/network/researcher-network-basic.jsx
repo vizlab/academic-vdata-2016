@@ -1,9 +1,9 @@
 import React from 'react'
 
-import {Loading} from '../../utils/loading'
-import {ScalableNetwork} from '../../network/scalable-network'
+import {Loading} from '../utils/loading'
+import {ScalableNetwork} from './scalable-network'
 
-import {networkDataFormatter} from '../../network/network-data-formatter'
+import {networkDataFormatter} from './network-data-formatter'
 
 export class ResearcherNetworkBasic extends React.Component {
   constructor (props) {
@@ -25,8 +25,13 @@ export class ResearcherNetworkBasic extends React.Component {
     networkDataFormatter().then(({nodes, edges, texts, nodeData, edgeData}) => {
       this.nodeData = nodeData
       this.edgeData = edgeData
-      this.setState({nodes, edges, texts, isLoaded: true})
+      this.afterDataLoad({nodes, edges, texts})
+      this.setState({isLoaded: true})
     })
+  }
+
+  afterDataLoad ({nodes, edges, texts}) {
+    this.setState({nodes, edges, texts})
   }
 
   render () {
@@ -43,6 +48,5 @@ export class ResearcherNetworkBasic extends React.Component {
 }
 ResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  textKey: React.PropTypes.string
+  height: React.PropTypes.number
 }

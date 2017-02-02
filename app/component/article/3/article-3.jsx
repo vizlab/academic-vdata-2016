@@ -8,7 +8,7 @@ import ActionOpenInNew from 'material-ui/svg-icons/action/open-in-new'
 import {Pagination} from '../pagination'
 import {ArticleHeader} from '../article-header'
 import {title} from './contents'
-
+import {ResearcherNetworkBetweenness} from '../../network/researcher-network-betweenness'
 
 export class Article3 extends React.Component {
   constructor (props) {
@@ -67,7 +67,10 @@ export class Article3 extends React.Component {
             <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
               <ActionOpenInNew onClick={() => { this.toggleContentExpand() }} />
             </IconButton>
-            here
+            <ResearcherNetworkBetweenness
+              height={this.state.contentHeight}
+              width={this.state.contentWidth}
+            />
           </Paper>
           <h3 className='mb-3'>異分野連携のキーとなる研究者トップ100</h3>
 
@@ -78,6 +81,10 @@ export class Article3 extends React.Component {
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='expand'>
             <NavigationArrowBack onClick={() => { this.toggleContentExpand() }} />
           </IconButton>
+          <ResearcherNetworkBetweenness
+            height={this.state.expandContentHeight}
+            width={this.state.expandContentWidth}
+          />
         </div>
       </div>
     )

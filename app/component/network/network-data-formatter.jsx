@@ -2,8 +2,10 @@ import {cacheLoader} from '../../service/cache-loader'
 import {c40} from '../../constants'
 
 const marginRatio = 0.1
+const defaultRadius = 1
 
 const nodeDataFormatter = (nodeData) => {
+  console.log('node data formatter')
   const nodes = []
   const texts = []
   nodeData.forEach((datum) => {
@@ -13,7 +15,9 @@ const nodeDataFormatter = (nodeData) => {
       normalizedX,
       normalizedY,
       'key': `node_${datum.id}`,
-      'fill': c40[Number(datum['Modularity Class'])]
+      'fill': c40[Number(datum['Modularity Class'])],
+      'normalizedRadius': defaultRadius,
+      data: datum
     })
     texts.push({
       normalizedX,
@@ -22,9 +26,12 @@ const nodeDataFormatter = (nodeData) => {
       'key': `text_${datum.id}`,
       'fill': '#333333',
       'stroke': '#ffffff',
-      'paintOrder': 'stroke'
+      'paintOrder': 'stroke',
+      'normalizedFontSize': 1,
+      data: datum
     })
   })
+  console.log('node data formatter done')
   return {nodes, texts}
 }
 
@@ -35,7 +42,7 @@ const edgeDataFormatter = ({nodeData, edgeData}) => {
   })
   const edges = []
   edgeData.forEach((edgeDatum, idx) => {
-    const [source, target] = Object.values(edgeDatum).map(id => id2Node[id])
+    const [source, target] = Object.keys(edgeDatum).map(key => edgeDatum[key]).map(id => id2Node[id])
     const normalizedX1 = Number(source.x) * (1 - marginRatio) + marginRatio / 2
     const normalizedY1 = Number(source.y) * (1 - marginRatio) + marginRatio / 2
     const normalizedX2 = Number(target.x) * (1 - marginRatio) + marginRatio / 2
@@ -47,9 +54,11 @@ const edgeDataFormatter = ({nodeData, edgeData}) => {
       normalizedY2,
       key: `edge_${idx}`,
       strokeOpacity: 0.3,
-      stroke: 'gray'
+      stroke: 'gray',
+      data: edgeDatum
     })
   })
+  console.log('edges data formatter done')
   return {edges}
 }
 

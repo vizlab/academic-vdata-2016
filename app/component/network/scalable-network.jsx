@@ -26,7 +26,7 @@ const getScaledNodes = ({nodes, width, height}) => {
     return Object.assign(node, {
       cx: width * node.normalizedX,
       cy: height * node.normalizedY,
-      r: Math.min(height, width) / 200
+      r: Math.min(height, width) / 200 * node.normalizedRadius
     })
   })
 }
@@ -36,7 +36,7 @@ const getScaledTexts = ({texts, width, height}) => {
     return Object.assign(text, {
       x: width * text.normalizedX,
       y: height * text.normalizedY,
-      fontSize: Math.min(height, width) / 130,
+      fontSize: Math.min(height, width) / 130 * text.normalizedFontSize,
       strokeWidth: Math.min(height, width) / 1000
     })
   })
