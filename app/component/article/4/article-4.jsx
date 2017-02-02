@@ -13,6 +13,7 @@ extends React.Component {
         <div className='container text-center'>
           <div className='mb-5'>
             <h2>{title}</h2>
+            <p>作成中</p>
           </div>
         </div>
         <Pagination currentPage={4} />
