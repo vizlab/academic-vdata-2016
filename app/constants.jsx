@@ -49,3 +49,9 @@ export const c40 = [
   '#ce6dbd',
   '#de9ed6'
 ]
+export const questionRankColors = [
+  '#507FBF',
+  '#BFD0E9',
+  '#FAC5C7',
+  '#F75E60'
+]

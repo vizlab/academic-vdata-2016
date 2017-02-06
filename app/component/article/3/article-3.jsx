@@ -15,11 +15,8 @@ export class Article3 extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      isContentExpand: false,
       contentHeight: 0,
-      contentWidth: 0,
-      expandContentHeight: 0,
-      expandContentWidth: 0
+      contentWidth: 0
     }
   }
 
@@ -36,13 +33,9 @@ export class Article3 extends React.Component {
     setTimeout(() => {
       const contentHeight = window.innerHeight * 0.8 | 0
       const contentWidth = ReactDOM.findDOMNode(this.refs.articleContent3).getBoundingClientRect().width | 0
-      const expandContentHeight = window.innerHeight - 50 | 0
-      const expandContentWidth = window.innerWidth | 0
       this.setState({
         contentHeight,
-        contentWidth,
-        expandContentHeight,
-        expandContentWidth
+        contentWidth
       })
     }, 0)
   }
