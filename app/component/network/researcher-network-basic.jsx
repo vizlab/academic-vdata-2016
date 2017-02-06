@@ -52,3 +52,29 @@ ResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number
 }
+
+export class InteractiveResearcherNetworkBasic extends React.Component {
+  constructor (props) {
+    super(props)
+
+  }
+
+  render () {
+    return (
+      <div>
+        <ResearcherNetworkBasic
+          height={this.props.height}
+          width={this.props.width}
+        />
+        <div className='container' style={{'height': this.props.barHeight}}>
+          { /* ctrl */ }
+        </div>
+      </div>
+    )
+  }
+}
+InteractiveResearcherNetworkBasic.propTypes = {
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  barHeight: React.PropTypes.number
+}

@@ -3,8 +3,8 @@ import {browserHistory} from 'react-router'
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import IconButton from 'material-ui/IconButton'
 
-import {ResearcherNetworkBasic} from '../network/researcher-network-basic'
-import {ResearcherNetworkBetweenness} from '../network/researcher-network-betweenness'
+import {InteractiveResearcherNetworkBasic} from '../network/researcher-network-basic'
+import {InteractiveResearcherNetworkBetweenness} from '../network/researcher-network-betweenness'
 import {InteractiveResearcherNetworkQuestion} from '../network/researcher-network-question'
 
 export class NetworkViewer extends React.Component {
@@ -27,7 +27,7 @@ export class NetworkViewer extends React.Component {
 
   updateRectSize () {
     setTimeout(() => {
-      const contentHeight = window.innerHeight | 0
+      const contentHeight = window.innerHeight > 0 ? window.innerHeight : 0
       const contentWidth = window.innerWidth
       this.setState({
         contentHeight,
@@ -46,24 +46,26 @@ export class NetworkViewer extends React.Component {
           </IconButton>
           {
             type === 'basic'
-            ? <ResearcherNetworkBasic
+            ? <InteractiveResearcherNetworkBasic
               height={this.state.contentHeight - 100}
               width={this.state.contentWidth}
+              barHeight={100}
               />
             : ''
           }
           {
             type === 'betweenness'
-            ? <ResearcherNetworkBetweenness
+            ? <InteractiveResearcherNetworkBetweenness
               height={this.state.contentHeight - 100}
               width={this.state.contentWidth}
+              barHeight={100}
               />
             : ''
           }
           {
             type === 'question'
             ? <InteractiveResearcherNetworkQuestion
-              height={this.state.contentHeight}
+              height={this.state.contentHeight - 100}
               width={this.state.contentWidth}
               barHeight={100}
               />

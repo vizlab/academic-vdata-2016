@@ -1,3 +1,4 @@
+import React from 'react'
 import {ResearcherNetworkBasic} from './researcher-network-basic'
 
 import {max} from 'd3-array'
@@ -32,4 +33,27 @@ export class ResearcherNetworkBetweenness extends ResearcherNetworkBasic {
       edges: edges
     })
   }
+}
+
+export class InteractiveResearcherNetworkBetweenness extends React.Component {
+  constructor (props) {
+    super(props)
+
+  }
+
+  render () {
+    return (
+      <div>
+        <ResearcherNetworkBetweenness
+          height={this.props.height}
+          width={this.props.width}
+        />
+      </div>
+    )
+  }
+}
+InteractiveResearcherNetworkBetweenness.propTypes = {
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  barHeight: React.PropTypes.number
 }
