@@ -3,7 +3,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 
 import {ResearcherNetworkBasic} from './researcher-network-basic'
-import {questionRankColors, questionItems} from '../../constants'
+import {questionRankColors, questionItems, questionGradual} from '../../constants'
 
 const getQuestionRankColors = (node, qId) => {
   return questionRankColors[Number(node.data[qId])]
@@ -49,8 +49,25 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
   render () {
     return (
       <div>
-        <ResearcherNetworkQuestion width={this.props.width} height={this.props.height} questionId={this.state.questionId} />
-        <div className='container'>
+        <ResearcherNetworkQuestion
+          width={this.props.width}
+          height={this.props.height - this.props.barHeight}
+          questionId={this.state.questionId}
+        />
+        <div style={{'position': 'absolute', 'bottom': this.props.barHeight, 'left': 10}}>
+          {
+            questionRankColors
+              .slice()
+              .reverse()
+              .map((color, idx) =>
+                <div>
+                  <span style={{color}}>●</span>
+                  : {questionGradual.slice().reverse()[idx]}
+                </div>
+              )
+          }
+        </div>
+        <div className='container-fluid'>
           <SelectField
             fullWidth
             value={this.state.questionId}
@@ -75,5 +92,6 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
 }
 InteractiveResearcherNetworkQuestion.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number
+  height: React.PropTypes.number,
+  barHeight: React.PropTypes.number
 }

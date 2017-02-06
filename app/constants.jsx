@@ -55,6 +55,12 @@ export const questionRankColors = [
   '#FAC5C7',
   '#F75E60'
 ]
+export const questionGradual = [
+  '全く当てはまらない',
+  '当てはならない',
+  '当てはまる',
+  'かなり当てはまる'
+]
 export const questionItems = {
   'A01': '私は、研究の価値は、「新しいもの・概念を生み出すこと」にこそあるべきだと考える',
   'A02': '私は、研究の価値は、「深い理解に到達すること」にこそあるべきだと考える',

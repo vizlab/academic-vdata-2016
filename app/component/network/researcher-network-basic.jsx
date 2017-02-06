@@ -40,7 +40,9 @@ export class ResearcherNetworkBasic extends React.Component {
         {
           this.state.isLoaded
           ? <ScalableNetwork width={this.props.width} height={this.props.height} nodes={this.state.nodes} edges={this.state.edges} texts={this.state.texts} />
-          : <Loading />
+          : <div style={{'width': this.props.width, 'height': this.props.height}}>
+            <Loading />
+          </div>
         }
       </div>
     )

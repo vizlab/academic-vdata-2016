@@ -27,7 +27,7 @@ export class NetworkViewer extends React.Component {
 
   updateRectSize () {
     setTimeout(() => {
-      const contentHeight = window.innerHeight - 100 | 0
+      const contentHeight = window.innerHeight | 0
       const contentWidth = window.innerWidth
       this.setState({
         contentHeight,
@@ -40,14 +40,14 @@ export class NetworkViewer extends React.Component {
     const type = this.props.location.query.type
     return (
       <div>
-        <div style={{'position': 'fixed', 'top': 0, 'left': 0, 'width': '100%', 'height': '100%'}}>
+        <div style={{'position': 'relative', 'width': '100%', 'height': '100%'}}>
           <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='back' onClick={browserHistory.goBack}>
             <NavigationArrowBack />
           </IconButton>
           {
             type === 'basic'
             ? <ResearcherNetworkBasic
-              height={this.state.contentHeight}
+              height={this.state.contentHeight - 100}
               width={this.state.contentWidth}
               />
             : ''
@@ -55,7 +55,7 @@ export class NetworkViewer extends React.Component {
           {
             type === 'betweenness'
             ? <ResearcherNetworkBetweenness
-              height={this.state.contentHeight}
+              height={this.state.contentHeight - 100}
               width={this.state.contentWidth}
               />
             : ''
@@ -65,6 +65,7 @@ export class NetworkViewer extends React.Component {
             ? <InteractiveResearcherNetworkQuestion
               height={this.state.contentHeight}
               width={this.state.contentWidth}
+              barHeight={100}
               />
             : ''
           }
