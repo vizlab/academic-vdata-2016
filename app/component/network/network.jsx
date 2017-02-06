@@ -5,6 +5,10 @@ export class Network extends React.Component {
   constructor (props) {
     super(props)
     this.Viewer = null
+
+    this.state = {
+      showTexts: true
+    }
   }
 
   componentDidMount () {
@@ -24,26 +28,30 @@ export class Network extends React.Component {
             return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} />
           })}
         </g>
-        <g>
-          {
-            this.props.texts.map((text) => {
-              return (
-                <text
-                  key={text.key}
-                  x={text.x}
-                  y={text.y}
-                  fontSize={text.fontSize}
-                  fill={text.fill}
-                  stroke={text.stroke}
-                  strokeWidth={text.strokeWidth}
-                  paintOrder={text.paintOrder}
-                >
-                  {text.text}
-                </text>
-              )
-            })
-          }
-        </g>
+        {
+          this.state.showTexts
+            ? <g>
+              {
+                this.props.texts.map((text) => {
+                  return (
+                    <text
+                      key={text.key}
+                      x={text.x}
+                      y={text.y}
+                      fontSize={text.fontSize}
+                      fill={text.fill}
+                      stroke={text.stroke}
+                      strokeWidth={text.strokeWidth}
+                      paintOrder={text.paintOrder}
+                    >
+                      {text.text}
+                    </text>
+                  )
+                })
+              }
+            </g>
+            : null
+        }
       </svg>
     )
   }
@@ -60,10 +68,20 @@ export class Network extends React.Component {
     this.Viewer.reset()
   }
 
+  onMouseUp () {
+    this.setState({'showTexts': true})
+  }
+
+  onMouseDown () {
+    this.setState({'showTexts': false})
+  }
+
   render () {
     return this.props.withTools
     ? (
-      <div style={{'position': 'relative'}}>
+      <div
+        style={{'position': 'relative'}}
+      >
         <ReactSVGPanZoom
           width={this.props.width}
           height={this.props.height}
@@ -73,6 +91,7 @@ export class Network extends React.Component {
           autoPan={false}
           background='white'
           toolbarPosition='none'
+          onChangeValue={(v) => { this.setState({'showTexts': v.mode !== 'panning'}) }}
         >
           {this.svg()}
         </ReactSVGPanZoom>
