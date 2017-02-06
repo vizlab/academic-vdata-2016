@@ -4,6 +4,8 @@ import {Network} from './network'
 
 export class ScalableNetwork extends React.Component {
   render () {
+    if (this.props.width <= 0) return
+    if (this.props.height <= 0) return
     const {nodes, edges, texts, width, height} = this.props
     const scaledNodes = getScaledNodes({nodes, width, height})
     const scaledEdges = getScaledEdges({edges, width, height})

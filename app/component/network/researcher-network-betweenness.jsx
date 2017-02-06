@@ -36,11 +36,6 @@ export class ResearcherNetworkBetweenness extends ResearcherNetworkBasic {
 }
 
 export class InteractiveResearcherNetworkBetweenness extends React.Component {
-  constructor (props) {
-    super(props)
-
-  }
-
   render () {
     return (
       <div>
