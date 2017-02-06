@@ -41,33 +41,32 @@ export class NetworkViewer extends React.Component {
     return (
       <div>
         <div style={{'position': 'relative', 'width': '100%', 'height': '100%'}}>
-          <IconButton style={{'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='back' onClick={browserHistory.goBack}>
+          <IconButton style={{'zIndex': 1000, 'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='back' onClick={browserHistory.goBack}>
             <NavigationArrowBack />
           </IconButton>
           {
             type === 'basic'
             ? <InteractiveResearcherNetworkBasic
-              height={this.state.contentHeight - 100}
+              height={this.state.contentHeight}
               width={this.state.contentWidth}
-              barHeight={100}
               />
             : ''
           }
           {
             type === 'betweenness'
             ? <InteractiveResearcherNetworkBetweenness
-              height={this.state.contentHeight - 100}
+              height={this.state.contentHeight}
               width={this.state.contentWidth}
-              barHeight={100}
+              barHeight={50}
               />
             : ''
           }
           {
             type === 'question'
             ? <InteractiveResearcherNetworkQuestion
-              height={this.state.contentHeight - 100}
+              height={this.state.contentHeight}
               width={this.state.contentWidth}
-              barHeight={100}
+              barHeight={50}
               />
             : ''
           }

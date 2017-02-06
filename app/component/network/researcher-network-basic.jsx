@@ -39,7 +39,14 @@ export class ResearcherNetworkBasic extends React.Component {
       <div style={{'width': '100%', 'height': '100%'}}>
         {
           this.state.isLoaded
-          ? <ScalableNetwork width={this.props.width} height={this.props.height} nodes={this.state.nodes} edges={this.state.edges} texts={this.state.texts} />
+          ? <ScalableNetwork
+            width={this.props.width}
+            height={this.props.height}
+            nodes={this.state.nodes}
+            edges={this.state.edges}
+            texts={this.state.texts}
+            withTools={this.props.withTools}
+          />
           : <div style={{'width': this.props.width, 'height': this.props.height}}>
             <Loading />
           </div>
@@ -50,7 +57,8 @@ export class ResearcherNetworkBasic extends React.Component {
 }
 ResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number
+  height: React.PropTypes.number,
+  withTools: React.PropTypes.bool
 }
 
 export class InteractiveResearcherNetworkBasic extends React.Component {
@@ -60,16 +68,13 @@ export class InteractiveResearcherNetworkBasic extends React.Component {
         <ResearcherNetworkBasic
           height={this.props.height}
           width={this.props.width}
+          withTools
         />
-        <div className='container' style={{'height': this.props.barHeight}}>
-          { /* ctrl */ }
-        </div>
       </div>
     )
   }
 }
 InteractiveResearcherNetworkBasic.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  barHeight: React.PropTypes.number
+  height: React.PropTypes.number
 }

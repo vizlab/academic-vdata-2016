@@ -4,14 +4,19 @@ import {Network} from './network'
 
 export class ScalableNetwork extends React.Component {
   render () {
-    if (this.props.width <= 0) return
-    if (this.props.height <= 0) return
     const {nodes, edges, texts, width, height} = this.props
     const scaledNodes = getScaledNodes({nodes, width, height})
     const scaledEdges = getScaledEdges({edges, width, height})
     const scaledTexts = getScaledTexts({texts, width, height})
     return (
-      <Network height={this.props.height} width={this.props.width} nodes={scaledNodes} edges={scaledEdges} texts={scaledTexts} />
+      <Network
+        height={this.props.height}
+        width={this.props.width}
+        nodes={scaledNodes}
+        edges={scaledEdges}
+        texts={scaledTexts}
+        withTools={this.props.withTools}
+      />
     )
   }
 }
@@ -20,7 +25,8 @@ ScalableNetwork.propTypes = {
   width: React.PropTypes.number,
   nodes: React.PropTypes.array,
   edges: React.PropTypes.array,
-  texts: React.PropTypes.array
+  texts: React.PropTypes.array,
+  withTools: React.PropTypes.bool
 }
 
 const getScaledNodes = ({nodes, width, height}) => {
