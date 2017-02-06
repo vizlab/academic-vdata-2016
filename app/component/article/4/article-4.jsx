@@ -48,8 +48,8 @@ export class Article4 extends React.Component {
             <h2>{title}</h2>
             <p>TODO: 特定の質問項目で色を変えると何か発見できるだろうか</p>
             <Paper className='mb-5' style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent4'>
-              <Link to={{'pathname': '/network-viewer', 'query': {'type': 'betweenness'}}}>
-                <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand' onClick={() => { this.toggleContentExpand() }}>
+              <Link to={{'pathname': '/network-viewer', 'query': {'type': 'question'}}}>
+                <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
                   <ActionOpenInNew />
                 </IconButton>
               </Link>

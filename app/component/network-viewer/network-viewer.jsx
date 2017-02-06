@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton'
 
 import {ResearcherNetworkBasic} from '../network/researcher-network-basic'
 import {ResearcherNetworkBetweenness} from '../network/researcher-network-betweenness'
+import {InteractiveResearcherNetworkQuestion} from '../network/researcher-network-question'
 
 export class NetworkViewer extends React.Component {
   constructor (props) {
@@ -54,6 +55,14 @@ export class NetworkViewer extends React.Component {
           {
             type === 'betweenness'
             ? <ResearcherNetworkBetweenness
+              height={this.state.contentHeight}
+              width={this.state.contentWidth}
+              />
+            : ''
+          }
+          {
+            type === 'question'
+            ? <InteractiveResearcherNetworkQuestion
               height={this.state.contentHeight}
               width={this.state.contentWidth}
               />

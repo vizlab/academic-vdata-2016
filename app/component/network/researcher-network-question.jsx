@@ -1,7 +1,9 @@
 import React from 'react'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 
 import {ResearcherNetworkBasic} from './researcher-network-basic'
-import {questionRankColors} from '../../constants'
+import {questionRankColors, questionItems} from '../../constants'
 
 const getQuestionRankColors = (node, qId) => {
   return questionRankColors[Number(node.data[qId])]
@@ -17,10 +19,10 @@ export class ResearcherNetworkQuestion extends ResearcherNetworkBasic {
     this.setState({nodes: questionColorNodes, edges, texts})
   }
 
-  componentWillReceiveProps () {
+  componentWillReceiveProps (nextProps) {
     const questionColorNodes = this.state.nodes.map((node) => {
       return Object.assign(node, {
-        'fill': getQuestionRankColors(node, this.props.questionId)
+        'fill': getQuestionRankColors(node, nextProps.questionId)
       })
     })
     this.setState({nodes: questionColorNodes})
@@ -36,23 +38,42 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      question: "A01"
+      questionId: 'A01'
     }
   }
-  componentDidMount () {
-    // this.setState({
-    //   question: "A02"
-    // })
+
+  handleChange (v) {
+    this.setState({questionId: v})
   }
+
   render () {
     return (
       <div>
-        <ResearcherNetworkQuestion width={this.props.width} height={this.props.height} questionId={this.state.question} />
+        <ResearcherNetworkQuestion width={this.props.width} height={this.props.height} questionId={this.state.questionId} />
+        <div className='container'>
+          <SelectField
+            fullWidth
+            value={this.state.questionId}
+            onChange={(e, idx, v) => { this.handleChange(v) }}
+          >
+            {
+              Object
+                .keys(questionItems)
+                .map((questionId) =>
+                  <MenuItem
+                    key={questionId}
+                    value={questionId}
+                    primaryText={questionItems[questionId]}
+                  />
+                )
+            }
+          </SelectField>
+        </div>
       </div>
     )
   }
 }
-ResearcherNetworkBasic.propTypes = {
+InteractiveResearcherNetworkQuestion.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number
 }
