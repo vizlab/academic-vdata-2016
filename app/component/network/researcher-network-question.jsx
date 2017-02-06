@@ -60,7 +60,7 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
               .slice()
               .reverse()
               .map((color, idx) =>
-                <div>
+                <div key={idx}>
                   <span style={{color}}>●</span>
                   : {questionGradual.slice().reverse()[idx]}
                 </div>
