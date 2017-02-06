@@ -54,7 +54,7 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
           height={this.props.height - this.props.barHeight}
           questionId={this.state.questionId}
         />
-        <div style={{'position': 'absolute', 'bottom': this.props.barHeight, 'left': 10}}>
+        <div style={{'position': 'absolute', 'bottom': this.props.barHeight, 'left': 30}}>
           {
             questionRankColors
               .slice()

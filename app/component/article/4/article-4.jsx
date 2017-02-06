@@ -48,7 +48,7 @@ export class Article4 extends React.Component {
           <div className='mb-5'>
             <h2 className='mb-5'>{title}</h2>
             <p>特定の質問項目で色を変えて表示．</p>
-            <p>「{questionItems['A01']}」という質問を例にすると…</p>
+            <p>『{questionItems['A01']}』という質問を例にすると…</p>
             <Paper className='mb-5' style={{'position': 'relative', 'height': this.state.contentHeight}} ref='articleContent4'>
               <Link to={{'pathname': '/network-viewer', 'query': {'type': 'question'}}}>
                 <IconButton style={{'position': 'absolute', 'top': '1rem', 'right': '1rem'}} tooltip='expand'>
