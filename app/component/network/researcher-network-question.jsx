@@ -71,6 +71,7 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
         <div style={{'position': 'absolute', 'right': 0, 'bottom': 10, 'width': this.props.width - 300}}>
           <SelectField
             fullWidth
+            floatingLabelText='質問項目をクリックすれば、他の質問の回答結果が見られます'
             value={this.state.questionId}
             onChange={(e, idx, v) => { this.handleChange(v) }}
           >
