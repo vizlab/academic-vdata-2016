@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {Network} from './network'
+import {PanZoomNetwork} from './pan-zoom-network'
 
 export class ScalableNetwork extends React.Component {
   render () {
@@ -8,16 +9,25 @@ export class ScalableNetwork extends React.Component {
     const scaledNodes = getScaledNodes({nodes, width, height})
     const scaledEdges = getScaledEdges({edges, width, height})
     const scaledTexts = getScaledTexts({texts, width, height})
-    return (
-      <Network
-        height={this.props.height}
-        width={this.props.width}
-        nodes={scaledNodes}
-        edges={scaledEdges}
-        texts={scaledTexts}
-        withTools={this.props.withTools}
-      />
-    )
+    return this.props.withTools
+      ? (
+        <PanZoomNetwork
+          height={this.props.height}
+          width={this.props.width}
+          nodes={scaledNodes}
+          edges={scaledEdges}
+          texts={scaledTexts}
+        />
+      )
+      : (
+        <Network
+          height={this.props.height}
+          width={this.props.width}
+          nodes={scaledNodes}
+          edges={scaledEdges}
+          texts={scaledTexts}
+        />
+      )
   }
 }
 ScalableNetwork.propTypes = {
