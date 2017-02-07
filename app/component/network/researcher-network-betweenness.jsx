@@ -50,6 +50,5 @@ export class InteractiveResearcherNetworkBetweenness extends React.Component {
 }
 InteractiveResearcherNetworkBetweenness.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  barHeight: React.PropTypes.number
+  height: React.PropTypes.number
 }

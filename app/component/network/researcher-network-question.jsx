@@ -51,10 +51,11 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
       <div>
         <ResearcherNetworkQuestion
           width={this.props.width}
-          height={this.props.height - this.props.barHeight}
+          height={this.props.height}
           questionId={this.state.questionId}
+          withTools
         />
-        <div style={{'position': 'absolute', 'bottom': this.props.barHeight, 'left': 30}}>
+        <div style={{'position': 'absolute', 'top': 10, 'right': 30}}>
           {
             questionRankColors
               .slice()
@@ -67,7 +68,7 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
               )
           }
         </div>
-        <div className='container-fluid'>
+        <div style={{'position': 'absolute', 'right': 0, 'bottom': 10, 'width': this.props.width - 300}}>
           <SelectField
             fullWidth
             value={this.state.questionId}
@@ -92,6 +93,5 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
 }
 InteractiveResearcherNetworkQuestion.propTypes = {
   width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  barHeight: React.PropTypes.number
+  height: React.PropTypes.number
 }

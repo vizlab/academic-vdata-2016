@@ -57,7 +57,6 @@ export class NetworkViewer extends React.Component {
             ? <InteractiveResearcherNetworkBetweenness
               height={this.state.contentHeight}
               width={this.state.contentWidth}
-              barHeight={50}
               />
             : ''
           }
@@ -66,7 +65,6 @@ export class NetworkViewer extends React.Component {
             ? <InteractiveResearcherNetworkQuestion
               height={this.state.contentHeight}
               width={this.state.contentWidth}
-              barHeight={50}
               />
             : ''
           }
