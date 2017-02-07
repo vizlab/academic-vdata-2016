@@ -42,6 +42,7 @@ export class InteractiveResearcherNetworkBetweenness extends React.Component {
         <ResearcherNetworkBetweenness
           height={this.props.height}
           width={this.props.width}
+          withTools
         />
       </div>
     )

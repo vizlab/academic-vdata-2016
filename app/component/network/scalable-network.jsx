@@ -54,7 +54,7 @@ const getScaledTexts = ({texts, width, height}) => {
     return Object.assign(text, {
       x: width * text.normalizedX,
       y: height * text.normalizedY,
-      fontSize: Math.min(height, width) / 130 * text.normalizedFontSize,
+      fontSize: parseInt(Math.min(height, width) / 130 * text.normalizedFontSize),
       strokeWidth: Math.min(height, width) / 1000
     })
   })
