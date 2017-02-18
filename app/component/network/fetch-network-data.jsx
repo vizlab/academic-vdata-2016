@@ -59,7 +59,7 @@ const edgeDataFormatter = ({nodeData, edgeData}) => {
   return {edges}
 }
 
-export const networkDataFormatter = () => {
+export const fetchNetworkData = () => {
   return new Promise((resolve) => {
     cacheLoader.getCsvFileFromFirebaseStorage('nodes.csv').then((nodeData) => {
       const {nodes, texts} = nodeDataFormatter(nodeData)

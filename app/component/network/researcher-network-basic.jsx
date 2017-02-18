@@ -2,36 +2,23 @@ import React from 'react'
 
 import {Loading} from '../utils/loading'
 import {ScalableNetwork} from './scalable-network'
-
-import {networkDataFormatter} from './network-data-formatter'
+import {networkCtrl} from './network-ctrl'
 
 export class ResearcherNetworkBasic extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      nodes: [],
-      edges: [],
-      texts: [],
       width: 0,
       height: 0,
       isLoaded: false
     }
-
-    this.nodeData = []
-    this.edgeData = []
+    networkCtrl.setBasicMode()
   }
 
   componentWillMount () {
-    networkDataFormatter().then(({nodes, edges, texts, nodeData, edgeData}) => {
-      this.nodeData = nodeData
-      this.edgeData = edgeData
-      this.afterDataLoad({nodes, edges, texts})
+    networkCtrl.getData().then(() => {
       this.setState({isLoaded: true})
     })
-  }
-
-  afterDataLoad ({nodes, edges, texts}) {
-    this.setState({nodes, edges, texts})
   }
 
   render () {
@@ -42,9 +29,9 @@ export class ResearcherNetworkBasic extends React.Component {
           ? <ScalableNetwork
             width={this.props.width}
             height={this.props.height}
-            nodes={this.state.nodes}
-            edges={this.state.edges}
-            texts={this.state.texts}
+            nodes={networkCtrl.getNodes()}
+            edges={networkCtrl.getEdges()}
+            texts={networkCtrl.getTexts()}
             withTools={this.props.withTools}
           />
           : <div style={{'width': this.props.width, 'height': this.props.height}}>

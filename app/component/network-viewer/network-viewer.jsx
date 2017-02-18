@@ -44,6 +44,10 @@ export class NetworkViewer extends React.Component {
           <IconButton style={{'zIndex': 1000, 'position': 'absolute', 'top': '1rem', 'left': '1rem'}} tooltip='back' onClick={browserHistory.goBack}>
             <NavigationArrowBack />
           </IconButton>
+          <div style={{'zIndex': 1000, 'position': 'absolute', 'top': '1rem', 'right': '1rem'}}>
+            <div>search area</div>
+            <div>viewer</div>
+          </div>
           {
             type === 'basic'
             ? <InteractiveResearcherNetworkBasic

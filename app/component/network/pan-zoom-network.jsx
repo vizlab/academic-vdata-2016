@@ -5,6 +5,8 @@ import ZoomIn from 'material-ui/svg-icons/action/zoom-in'
 import ZoomOut from 'material-ui/svg-icons/action/zoom-out'
 import ZoomOutMap from 'material-ui/svg-icons/maps/zoom-out-map'
 
+import {networkCtrl} from './network-ctrl'
+
 export class PanZoomNetwork extends React.Component {
   constructor (props) {
     super(props)
@@ -25,7 +27,7 @@ export class PanZoomNetwork extends React.Component {
         </g>
         <g>
           {this.props.nodes.map((node) => {
-            return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} />
+            return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} onClick={() => { networkCtrl.onClickNode(node) }} />
           })}
         </g>
         {
@@ -68,14 +70,6 @@ export class PanZoomNetwork extends React.Component {
     this.Viewer.reset()
   }
 
-  onMouseUp () {
-    this.setState({'showTexts': true})
-  }
-
-  onMouseDown () {
-    this.setState({'showTexts': false})
-  }
-
   render () {
     return (
       <div
@@ -85,8 +79,9 @@ export class PanZoomNetwork extends React.Component {
           width={this.props.width}
           height={this.props.height}
           ref={(Viewer) => { this.Viewer = Viewer }}
-          tool='pan'
+          tool='auto'
           detectWheel={false}
+          detectAutoPan={false}
           autoPan={false}
           background='white'
           toolbarPosition='none'

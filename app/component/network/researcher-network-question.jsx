@@ -4,28 +4,16 @@ import MenuItem from 'material-ui/MenuItem'
 
 import {ResearcherNetworkBasic} from './researcher-network-basic'
 import {questionRankColors, questionItems, questionGradual} from '../../constants'
-
-const getQuestionRankColors = (node, qId) => {
-  return questionRankColors[Number(node.data[qId])]
-}
+import {networkCtrl} from './network-ctrl'
 
 export class ResearcherNetworkQuestion extends ResearcherNetworkBasic {
-  afterDataLoad ({nodes, edges, texts}) {
-    const questionColorNodes = nodes.map((node) => {
-      return Object.assign(node, {
-        'fill': getQuestionRankColors(node, this.props.questionId)
-      })
-    })
-    this.setState({nodes: questionColorNodes, edges, texts})
+  constructor (props) {
+    super(props)
+    networkCtrl.setQuestionMode()
   }
 
   componentWillReceiveProps (nextProps) {
-    const questionColorNodes = this.state.nodes.map((node) => {
-      return Object.assign(node, {
-        'fill': getQuestionRankColors(node, nextProps.questionId)
-      })
-    })
-    this.setState({nodes: questionColorNodes})
+    networkCtrl.setColorByQuestionId(nextProps.questionId)
   }
 }
 ResearcherNetworkQuestion.propTypes = {
