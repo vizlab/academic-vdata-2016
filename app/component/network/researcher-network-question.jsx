@@ -55,7 +55,7 @@ export class InteractiveResearcherNetworkQuestion extends React.Component {
           questionId={this.state.questionId}
           withTools
         />
-        <div style={{'position': 'absolute', 'top': 10, 'right': 30}}>
+        <div style={{'position': 'absolute', 'bottom': 80, 'left': 30}}>
           {
             questionRankColors
               .slice()
