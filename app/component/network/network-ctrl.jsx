@@ -84,6 +84,7 @@ class NetworkCtrl {
         'fill': getQuestionRankColors(node, questionId)
       })
     })
+    this.complete()
   }
 
   getData () {
