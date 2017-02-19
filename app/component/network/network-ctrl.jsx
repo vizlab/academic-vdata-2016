@@ -20,6 +20,7 @@ class NetworkCtrl {
     this.type = ''
     this.listeners = []
     this.isLoaded = false
+    this.searchKeyword = ''
   }
 
   setBasicMode () {
@@ -109,6 +110,7 @@ class NetworkCtrl {
   }
 
   searchByKeyword (keyword) {
+    this.searchKeyword = keyword
     if (!keyword) {
       this.init()
       this.complete()

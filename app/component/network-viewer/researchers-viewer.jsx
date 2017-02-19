@@ -41,14 +41,16 @@ export class ResearchersViewer extends React.Component {
     researchersViewerCtrl.init()
     this.state = {
       researchers: [],
-      isLoaded: false
+      isLoaded: false,
+      searchText: ''
     }
   }
 
   componentDidMount () {
     networkCtrl.register(() => {
       this.setState({
-        isLoaded: networkCtrl.isLoaded
+        isLoaded: networkCtrl.isLoaded,
+        searchText: networkCtrl.searchKeyword
       })
     })
     researchersViewerCtrl.register((researchers) => {
@@ -71,6 +73,7 @@ export class ResearchersViewer extends React.Component {
               dataSource={networkCtrl.getAllResearchKeyword()}
               hintText='研究キーワード検索'
               onUpdateInput={(v) => { networkCtrl.searchByKeyword(v) }}
+              searchText={this.state.searchText}
             />
             <div style={{'maxHeight': this.props.height * 0.8, 'overflowY': 'scroll'}}>
               <ResearcherCard

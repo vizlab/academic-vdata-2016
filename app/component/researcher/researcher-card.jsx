@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper'
 import {List, ListItem} from 'material-ui/List'
 import Person from 'material-ui/svg-icons/social/person'
 import {c40} from '../../constants'
+import {networkCtrl} from '../network/network-ctrl'
 
 const styles = {
   chipWrap: {
@@ -38,11 +39,11 @@ export class ResearcherCard extends React.Component {
                         disabled
                         secondaryText={
                           <p style={styles.chipWrap} className='row'>
-                            {d.keyword_1 ? `${d.keyword_1}` : null}
-                            {d.keyword_2 ? ` / ${d.keyword_2}` : null}
-                            {d.keyword_3 ? ` / ${d.keyword_3}` : null}
-                            {d.keyword_4 ? ` / ${d.keyword_4}` : null}
-                            {d.keyword_5 ? ` / ${d.keyword_5}` : null}
+                            {d.keyword_1 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_1) }}>{`${d.keyword_1}`}</a> : null}
+                            {d.keyword_2 ? ` / ` : null} {d.keyword_2 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_2) }}>{`${d.keyword_2}`}</a> : null}
+                            {d.keyword_3 ? ` / ` : null} {d.keyword_3 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_3) }}>{`${d.keyword_3}`}</a> : null}
+                            {d.keyword_4 ? ` / ` : null} {d.keyword_4 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_4) }}>{`${d.keyword_4}`}</a> : null}
+                            {d.keyword_5 ? ` / ` : null} {d.keyword_5 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_5) }}>{`${d.keyword_5}`}</a> : null}
                           </p>
                         }
                         leftAvatar={<Person color={c40[d['Modularity Class']]} />}
