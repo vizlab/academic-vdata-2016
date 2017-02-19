@@ -3,6 +3,7 @@ import {scaleLog} from 'd3-scale'
 
 import {fetchNetworkData} from './fetch-network-data'
 import {questionRankColors} from '../../constants'
+import {researchersViewerCtrl} from '../network-viewer/researchers-viewer'
 
 const getQuestionRankColors = (node, qId) => {
   return questionRankColors[Number(node.data[qId])]
@@ -92,7 +93,7 @@ class NetworkCtrl {
   }
 
   onClickNode (node) {
-    console.log(node)
+    researchersViewerCtrl.setResearchers([node])
   }
 
   getNodes () {

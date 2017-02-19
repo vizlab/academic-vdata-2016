@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton'
 import ZoomIn from 'material-ui/svg-icons/action/zoom-in'
 import ZoomOut from 'material-ui/svg-icons/action/zoom-out'
 import ZoomOutMap from 'material-ui/svg-icons/maps/zoom-out-map'
+import {voronoi} from 'd3-voronoi'
 
 import {networkCtrl} from './network-ctrl'
 
@@ -17,6 +18,21 @@ export class PanZoomNetwork extends React.Component {
     }
   }
 
+  polygons () {
+    const coords = this.props.nodes.map(({cx, cy}) => [cx, cy])
+    const polygons = voronoi()
+      .polygons(coords)
+      .map((d) => d.filter((d) => !!d).map((point) => point.join(',')))
+      .map((d, idx) =>
+        <polygon
+          points={d}
+          key={idx}
+          onClick={() => { networkCtrl.onClickNode(this.props.nodes[idx].data) }}
+          opacity={0}
+        />)
+    return polygons
+  }
+
   svg () {
     return (
       <svg width={this.props.width} height={this.props.height}>
@@ -27,7 +43,15 @@ export class PanZoomNetwork extends React.Component {
         </g>
         <g>
           {this.props.nodes.map((node) => {
-            return <circle key={node.key} cx={node.cx} cy={node.cy} r={node.r} fill={node.fill} onClick={() => { networkCtrl.onClickNode(node) }} />
+            return (
+              <circle
+                key={node.key}
+                cx={node.cx}
+                cy={node.cy}
+                r={node.r}
+                fill={node.fill}
+              />
+            )
           })}
         </g>
         {
@@ -54,6 +78,9 @@ export class PanZoomNetwork extends React.Component {
             </g>
             : null
         }
+        <g>
+          {this.polygons()}
+        </g>
       </svg>
     )
   }

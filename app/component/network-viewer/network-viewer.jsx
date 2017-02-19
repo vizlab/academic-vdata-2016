@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton'
 import {InteractiveResearcherNetworkBasic} from '../network/researcher-network-basic'
 import {InteractiveResearcherNetworkBetweenness} from '../network/researcher-network-betweenness'
 import {InteractiveResearcherNetworkQuestion} from '../network/researcher-network-question'
+import {ResearchersViewer} from './researchers-viewer'
 
 export class NetworkViewer extends React.Component {
   constructor (props) {
@@ -46,7 +47,7 @@ export class NetworkViewer extends React.Component {
           </IconButton>
           <div style={{'zIndex': 1000, 'position': 'absolute', 'top': '1rem', 'right': '1rem'}}>
             <div>search area</div>
-            <div>viewer</div>
+            <ResearchersViewer height={this.state.contentHeight} />
           </div>
           {
             type === 'basic'
