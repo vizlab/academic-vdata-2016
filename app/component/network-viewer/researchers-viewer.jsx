@@ -1,5 +1,7 @@
 import React from 'react'
 import {ResearcherCard} from '../researcher/researcher-card'
+import AutoComplete from 'material-ui/AutoComplete'
+import {networkCtrl} from '../network/network-ctrl'
 
 class ResearchersViewerCtrl {
   constructor () {
@@ -38,28 +40,46 @@ export class ResearchersViewer extends React.Component {
     super(props)
     researchersViewerCtrl.init()
     this.state = {
-      researchers: []
+      researchers: [],
+      isLoaded: false
     }
   }
 
   componentDidMount () {
+    networkCtrl.register(() => {
+      this.setState({
+        isLoaded: networkCtrl.isLoaded
+      })
+    })
     researchersViewerCtrl.register((researchers) => {
       this.setState({researchers})
     })
   }
 
   componentWillUnmount () {
+    networkCtrl.dispose()
     researchersViewerCtrl.init()
   }
 
   render () {
-    return (
-      <div style={{'maxHeight': this.props.height * 0.8, 'overflowY': 'scroll'}}>
-        <ResearcherCard
-          data={this.state.researchers}
-        />
-      </div>
-    )
+    return this.state.isLoaded
+        ? (
+          <div>
+            <AutoComplete
+              style={{'backgroundColor': 'white'}}
+              filter={AutoComplete.caseInsensitiveFilter}
+              dataSource={networkCtrl.getAllResearchKeyword()}
+              hintText='研究キーワード検索'
+              onUpdateInput={(v) => { networkCtrl.searchByKeyword(v) }}
+            />
+            <div style={{'maxHeight': this.props.height * 0.8, 'overflowY': 'scroll'}}>
+              <ResearcherCard
+                data={this.state.researchers}
+              />
+            </div>
+          </div>
+        )
+        : null
   }
 }
 ResearchersViewer.propTypes = {

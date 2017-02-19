@@ -46,7 +46,6 @@ export class NetworkViewer extends React.Component {
             <NavigationArrowBack />
           </IconButton>
           <div style={{'zIndex': 1000, 'position': 'absolute', 'top': '1rem', 'right': '1rem'}}>
-            <div>search area</div>
             <ResearchersViewer height={this.state.contentHeight} />
           </div>
           {

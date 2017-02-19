@@ -19,6 +19,7 @@ class NetworkCtrl {
     this.texts = []
     this.type = ''
     this.listeners = []
+    this.isLoaded = false
   }
 
   setBasicMode () {
@@ -86,12 +87,48 @@ class NetworkCtrl {
 
   getData () {
     return fetchNetworkData().then(({nodes, edges, texts}) => {
+      this.isLoaded = true
       this.rawNodes = nodes
       this.rawEdges = edges
       this.rawTexts = texts
       this.init()
       this.complete()
     })
+  }
+
+  getAllResearchKeyword () {
+    const researchKeywords = new Set()
+    this.rawNodes.map((node) => {
+      if (node.data.keyword_1) researchKeywords.add(node.data.keyword_1)
+      if (node.data.keyword_2) researchKeywords.add(node.data.keyword_2)
+      if (node.data.keyword_3) researchKeywords.add(node.data.keyword_3)
+      if (node.data.keyword_4) researchKeywords.add(node.data.keyword_4)
+      if (node.data.keyword_5) researchKeywords.add(node.data.keyword_5)
+    })
+    return [...researchKeywords]
+  }
+
+  searchByKeyword (keyword) {
+    if (!keyword) {
+      this.init()
+      this.complete()
+      return
+    }
+    this.init()
+    const idxs = []
+    const searchedNodes = this.rawNodes.map(d => d.data).filter((d, idx) => {
+      if (d.keyword_1 === keyword || d.keyword_2 === keyword || d.keyword_3 === keyword || d.keyword_4 === keyword || d.keyword_5 === keyword) {
+        idxs.push(idx)
+        return true
+      }
+      return false
+    })
+    idxs.forEach((idx) => {
+      this.nodes[idx].normalizedRadius = this.nodes[idx].normalizedRadius * 3
+      this.texts[idx].normalizedFontSize = this.texts[idx].normalizedFontSize * 5
+    })
+    researchersViewerCtrl.setResearchers(searchedNodes)
+    this.complete()
   }
 
   onClickNode (node, idx) {
@@ -113,18 +150,5 @@ class NetworkCtrl {
   dispose () {
     this.listeners = []
   }
-
-  getNodes () {
-    return this.nodes
-  }
-
-  getEdges () {
-    return this.edges
-  }
-
-  getTexts () {
-    return this.texts
-  }
 }
-let p = 0
 export const networkCtrl = new NetworkCtrl()

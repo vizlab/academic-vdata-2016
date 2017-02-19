@@ -21,11 +21,11 @@ export class ResearcherNetworkBasic extends React.Component {
       this.setState({isLoaded: true})
     })
     networkCtrl.register(({nodes, edges, texts}) => {
-      this.setState({nodes})
+      this.setState({nodes, edges, texts})
     })
   }
 
-  componentWillUnmont () {
+  componentWillUnmount () {
     networkCtrl.dispose()
   }
 
@@ -38,8 +38,8 @@ export class ResearcherNetworkBasic extends React.Component {
             width={this.props.width}
             height={this.props.height}
             nodes={this.state.nodes}
-            edges={networkCtrl.getEdges()}
-            texts={networkCtrl.getTexts()}
+            edges={this.state.edges}
+            texts={this.state.texts}
             withTools={this.props.withTools}
           />
           : <div style={{'width': this.props.width, 'height': this.props.height}}>

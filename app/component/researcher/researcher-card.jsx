@@ -27,7 +27,7 @@ export class ResearcherCard extends React.Component {
       <div>
         {
           this.props.data.length
-            ? <Paper>
+            ? <Paper zDepth={5} style={{'backgroundColor': 'rgba(255,255,255,0.8)'}}>
               <List>
                 {
                   this.props.data.map((d) => {
