@@ -39,11 +39,11 @@ export class ResearcherCard extends React.Component {
                         disabled
                         secondaryText={
                           <p style={styles.chipWrap} className='row'>
-                            {d.keyword_1 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_1) }}>{`${d.keyword_1}`}</a> : null}
-                            {d.keyword_2 ? ` / ` : null} {d.keyword_2 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_2) }}>{`${d.keyword_2}`}</a> : null}
-                            {d.keyword_3 ? ` / ` : null} {d.keyword_3 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_3) }}>{`${d.keyword_3}`}</a> : null}
-                            {d.keyword_4 ? ` / ` : null} {d.keyword_4 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_4) }}>{`${d.keyword_4}`}</a> : null}
-                            {d.keyword_5 ? ` / ` : null} {d.keyword_5 ? <a onClick={() => { networkCtrl.searchByKeyword(d.keyword_5) }}>{`${d.keyword_5}`}</a> : null}
+                            {d.keyword_1 ? <span className='badge badge-pill badge-default' onClick={() => { networkCtrl.searchByKeyword(d.keyword_1) }}>{`${d.keyword_1}`}</span> : null}
+                            {d.keyword_2 ? <span className='badge badge-pill badge-default' onClick={() => { networkCtrl.searchByKeyword(d.keyword_2) }}>{`${d.keyword_2}`}</span> : null}
+                            {d.keyword_3 ? <span className='badge badge-pill badge-default' onClick={() => { networkCtrl.searchByKeyword(d.keyword_3) }}>{`${d.keyword_3}`}</span> : null}
+                            {d.keyword_4 ? <span className='badge badge-pill badge-default' onClick={() => { networkCtrl.searchByKeyword(d.keyword_4) }}>{`${d.keyword_4}`}</span> : null}
+                            {d.keyword_5 ? <span className='badge badge-pill badge-default' onClick={() => { networkCtrl.searchByKeyword(d.keyword_5) }}>{`${d.keyword_5}`}</span> : null}
                           </p>
                         }
                         leftAvatar={<Person color={c40[d['Modularity Class']]} />}
