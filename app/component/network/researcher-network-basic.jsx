@@ -10,7 +10,8 @@ export class ResearcherNetworkBasic extends React.Component {
     this.state = {
       width: 0,
       height: 0,
-      isLoaded: false
+      isLoaded: false,
+      nodes: []
     }
     networkCtrl.setBasicMode()
   }
@@ -19,6 +20,13 @@ export class ResearcherNetworkBasic extends React.Component {
     networkCtrl.getData().then(() => {
       this.setState({isLoaded: true})
     })
+    networkCtrl.register(({nodes, edges, texts}) => {
+      this.setState({nodes})
+    })
+  }
+
+  componentWillUnmont () {
+    networkCtrl.dispose()
   }
 
   render () {
@@ -29,7 +37,7 @@ export class ResearcherNetworkBasic extends React.Component {
           ? <ScalableNetwork
             width={this.props.width}
             height={this.props.height}
-            nodes={networkCtrl.getNodes()}
+            nodes={this.state.nodes}
             edges={networkCtrl.getEdges()}
             texts={networkCtrl.getTexts()}
             withTools={this.props.withTools}

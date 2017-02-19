@@ -35,6 +35,7 @@ export class ResearcherCard extends React.Component {
                       <ListItem
                         key={d.id}
                         primaryText={'id: ' + d.id}
+                        disabled
                         secondaryText={
                           <p style={styles.chipWrap} className='row'>
                             {d.keyword_1 ? `${d.keyword_1}` : null}

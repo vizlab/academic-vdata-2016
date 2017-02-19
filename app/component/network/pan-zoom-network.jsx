@@ -27,7 +27,7 @@ export class PanZoomNetwork extends React.Component {
         <polygon
           points={d}
           key={idx}
-          onClick={() => { networkCtrl.onClickNode(this.props.nodes[idx].data) }}
+          onClick={() => { networkCtrl.onClickNode(this.props.nodes[idx].data, idx) }}
           opacity={0}
         />)
     return polygons

@@ -18,6 +18,7 @@ class NetworkCtrl {
     this.edges = []
     this.texts = []
     this.type = ''
+    this.listeners = []
   }
 
   setBasicMode () {
@@ -34,9 +35,9 @@ class NetworkCtrl {
 
   init () {
     if (this.type === 'basic') {
-      this.nodes = [].concat(this.rawNodes)
-      this.edges = [].concat(this.rawEdges)
-      this.texts = [].concat(this.rawTexts)
+      this.nodes = this.rawNodes.map(d => Object.assign({}, d))
+      this.edges = this.rawEdges.map(d => Object.assign({}, d))
+      this.texts = this.rawTexts.map(d => Object.assign({}, d))
     }
 
     if (this.type === 'betweenness') {
@@ -61,7 +62,7 @@ class NetworkCtrl {
           normalizedFontSize: textLogScale(1 + Number(text.data['betweenness_centrality']))
         })
       })
-      this.edges = [].concat(this.rawEdges)
+      this.edges = this.rawEdges.map((d) => Object.assign({}, d))
     }
 
     if (this.type === 'question') {
@@ -70,8 +71,8 @@ class NetworkCtrl {
           'fill': getQuestionRankColors(node, 'A01')
         })
       })
-      this.edges = [].concat(this.rawEdges)
-      this.texts = [].concat(this.rawTexts)
+      this.edges = this.rawEdges.map((d) => Object.assign({}, d))
+      this.texts = this.rawTexts.map((d) => Object.assign({}, d))
     }
   }
 
@@ -89,11 +90,28 @@ class NetworkCtrl {
       this.rawEdges = edges
       this.rawTexts = texts
       this.init()
+      this.complete()
     })
   }
 
-  onClickNode (node) {
+  onClickNode (node, idx) {
     researchersViewerCtrl.setResearchers([node])
+    this.init()
+    this.nodes[idx].normalizedRadius = this.nodes[idx].normalizedRadius * 3
+    this.texts[idx].normalizedFontSize = this.texts[idx].normalizedFontSize * 5
+    this.complete()
+  }
+
+  register (listener) {
+    this.listeners.push(() => { listener({nodes: this.nodes, edges: this.edges, texts: this.texts}) })
+  }
+
+  complete () {
+    this.listeners.forEach((listener) => { listener() })
+  }
+
+  dispose () {
+    this.listeners = []
   }
 
   getNodes () {
@@ -102,12 +120,11 @@ class NetworkCtrl {
 
   getEdges () {
     return this.edges
-
   }
 
   getTexts () {
     return this.texts
   }
 }
-
+let p = 0
 export const networkCtrl = new NetworkCtrl()
