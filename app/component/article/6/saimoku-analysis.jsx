@@ -125,7 +125,6 @@ export class SaimokuAnalysis extends React.Component {
         </div>
         {
           this.props.data.map((datum, idx) => {
-            console.log(datum)
             if (!this.state.bunkas.has(datum.bunka)) return
             return (
               <div key={idx}>
