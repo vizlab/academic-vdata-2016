@@ -1,7 +1,7 @@
 import React from 'react'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-
+import {RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis} from 'recharts'
 import {saimokus, questionRankColors, questionGradual, questionItems} from '../../../constants'
 
 const bunkaIndicator = [
@@ -181,20 +181,32 @@ export class SaimokuAnalysis extends React.Component {
                   <div className='col-md-6'>
                     <div className='p-3'>
                       <h5>文化指標値</h5>
-                      {
-                        bunkaIndicator.map((label, idx) => {
-                          return (
-                            <div className='row' key={idx}>
-                              <div className='col-sm-6'>{label}</div>
-                              <div className='col-sm-6'>
-                                {
-                                  Math.round(datum.standard_bunka_components[idx] * 10)
-                                }
-                              </div>
-                            </div>
-                          )
-                        })
-                      }
+                      <div className='p3'>
+                        <RadarChart
+                          cx={170}
+                          cy={100}
+                          width={340}
+                          height={200}
+                          data={
+                            bunkaIndicator.map((key, idx) => {
+                              return {
+                                subject: key,
+                                A: datum.standard_bunka_components[idx] * 10
+                              }
+                            })
+                          }
+                        >
+                          <Radar
+                            dataKey='A'
+                            storke='#8884d8'
+                            fill='#8884d8'
+                            fillOpacity={0.6}
+                          />
+                          <PolarGrid />
+                          <PolarAngleAxis dataKey='subject' style={{'fontSize': '8px'}} />
+                          <PolarRadiusAxis domain={[0, 10]} />
+                        </RadarChart>
+                      </div>
                     </div>
                   </div>
                 </div>
